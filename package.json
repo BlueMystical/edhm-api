@@ -4,7 +4,7 @@
   "description": "Server API for Storing and Queriying EDHM user statistics.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "server.js "
   },
   "author": "BlueMystic",
   "license": "ISC",  
