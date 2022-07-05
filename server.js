@@ -11,7 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const routes = require('./Routes/Route')
 app.use('/', routes)
 
-//start server
+//start server 
+/*
 app.listen(3000, ()=>{
     console.log("listeniing at port:3000")
-}) 
+})*/
+app.listen();
