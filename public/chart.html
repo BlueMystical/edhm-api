@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="BlueMystic - 2022">
+    <meta name="copyright" content="EDHM_UI">
+    <meta name="description" content="Statistics Chart">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Statistics Chart</title>
+
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+</head>
+
+<body>
+
+    <canvas id="CountriesChart" height="200"></canvas>
+    <canvas id="LanguagesChart" height="200"></canvas>
+    <canvas id="OdysseyChart" height="200"></canvas>
+    <canvas id="GameModeChart" height="200"></canvas>
+
+    <script>
+        //https://www.chartjs.org/docs/3.2.0/
+        try {
+            var myRequest = new Request('/users/get-statistics', {
+                method: 'GET',
+                headers: new Headers(),
+                mode: 'cors',
+                cache: 'no-cache'
+            });
+            fetch(myRequest).then(function (response) {
+                var contentType = response.headers.get("content-type");
+                if (contentType && contentType.indexOf("application/json") !== -1) {
+                    return response.json().then(function (json) {
+                        //console.log(json);
+                        var mData = json.result;
+                        var barColors = ["#1F618D", "#148F77", "#A93226", "#A569BD", "#DC7633", "#5D6D7E", "#F7DC6F", "#76D7C4", "#D2B4DE"];
+
+                        //1. Grafico para los Paises:
+                        if (typeof mData.Countries != 'undefined') {
+                            var xValues = [];
+                            var yValues = [];
+
+                            mData.Countries.forEach(country => {
+                                xValues.push(country.Value);
+                                yValues.push(country.Count);
+                            });
+
+                            var ctx = document.getElementById('CountriesChart').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: "bar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                        backgroundColor: barColors,
+                                        data: yValues
+                                    }]
+                                },
+                                options: {
+                                    plugins: {
+                                        legend: { display: false },
+                                        title: {
+                                            display: true,
+                                            text: "EDHM_UI by Countries"
+                                        }
+                                    },
+                                    maintainAspectRatio: false,
+                                    responsive: false,
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        }
+
+                        //2. Grafico para los Lenguajes:
+                        if (typeof mData.Languages != 'undefined') {
+                            var xValues = [];
+                            var yValues = [];
+
+                            mData.Languages.forEach(country => {
+                                xValues.push(country.Value);
+                                yValues.push(country.Count);
+                            });
+
+                            var ctx = document.getElementById('LanguagesChart').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: "bar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                        backgroundColor: barColors,
+                                        data: yValues
+                                    }]
+                                },
+                                options: {
+                                    plugins: {
+                                        legend: { display: false },
+                                        title: {
+                                            display: true,
+                                            text: "EDHM_UI by Languages"
+                                        }
+                                    },
+                                    maintainAspectRatio: false,
+                                    responsive: false,
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        }
+
+                        //3. Grafico para los que usan Odyssey:
+                        if (typeof mData.Odyssey != 'undefined') {
+                            var xValues = [];
+                            var yValues = [];
+
+                            mData.Odyssey.forEach(country => {
+                                xValues.push(country.Value);
+                                yValues.push(country.Count);
+                            });
+
+                            var ctx = document.getElementById('OdysseyChart').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: "bar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                        backgroundColor: barColors,
+                                        data: yValues
+                                    }]
+                                },
+                                options: {
+                                    plugins: {
+                                        legend: { display: false },
+                                        title: {
+                                            display: true,
+                                            text: "EDHM_UI by Odyssey usage"
+                                        }
+                                    },
+                                    maintainAspectRatio: false,
+                                    responsive: false,
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        }
+
+                        //4. Grafico para el GameMode:
+                        if (typeof mData.GameMode != 'undefined') {
+                            var xValues = [];
+                            var yValues = [];
+
+                            mData.GameMode.forEach(country => {
+                                xValues.push(country.Value);
+                                yValues.push(country.Count);
+                            });
+
+                            var ctx = document.getElementById('GameModeChart').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: "bar",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [{
+                                        backgroundColor: barColors,
+                                        data: yValues
+                                    }]
+                                },
+                                options: {
+                                    plugins: {
+                                        legend: { display: false },
+                                        title: {
+                                            display: true,
+                                            text: "EDHM_UI by GameMode"
+                                        }
+                                    },
+                                    maintainAspectRatio: false,
+                                    responsive: false,
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    console.log("Oops, we haven't got JSON!");
+                }
+            })
+                .catch(error => console.error('Error:', error));
+        } catch (error) {
+            console.log(error);
+        }
+    </script>
+
+</body>
+
+</html>
