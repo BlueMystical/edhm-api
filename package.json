@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Server API for Storing and Queriying EDHM user statistics.",
   "main": "server.js",
-  "scripts": {
-    "start": "server.js "
-  },
   "author": "BlueMystic",
   "license": "ISC",  
   "dependencies": {
