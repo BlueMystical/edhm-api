@@ -4,8 +4,7 @@
   "description": "Server API for Storing and Queriying EDHM user statistics.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "heroku-postbuild": "npm run build"
+    "start": "node server.js"
   },
   "author": "BlueMystic",
   "license": "ISC",
