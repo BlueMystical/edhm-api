@@ -14,6 +14,8 @@ app.use('/', routes)
 //start server 
 /*
 app.listen(3000, ()=>{
-    console.log("listeniing at port:3000")
-})*/
-app.listen();
+    console.log("Escuchando el puerto :3000")
+}) */
+app.listen(()=>{
+    console.log("Escuchando Sin Puerto")
+})
