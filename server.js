@@ -1,22 +1,32 @@
-const express = require("express")
-const bodyParser = require("body-parser")
-const fs = require('fs');
+const express        = require('express');
+const bodyParser     = require('body-parser');
+const routes         = require('./Routes/Route')
+const fs             = require('fs');
+const app            = express();
+const port           = 3000;
 
-// create our express app
-const app = express()
-// middleware
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }));
-// route
-const routes = require('./Routes/Route')
-app.use('/', routes)
+/* -----------------------------------------------------------------
+    ESTE ES UN BACKEND HECHO CON NODE.js v16.15 y Express.
+    Autor: Jhollman Chacon R.
+    Corre en el puerto 3000
+    http://localhost:3000/
+* ----------------------------------------------------------------- */
+// todo dentro de la carpeta 'public' se puede acceder estaticamente, en el navegador 'localhost:3000\favicon.ico'
+// middleware:
+app.use(
+    bodyParser.urlencoded(
+        { extended: true }
+    ),
+    express.json(),
+    express.static(         
+        __dirname + '/public', 
+        { index: '404.html' }
+    ) 
+);
+app.set("view options", { layout: false });
+app.use('/', routes);  //<- Llama al archivo de Rutas.
 
-//start server 
-/*
-app.listen(3000, ()=>{
-    console.log("Escuchando el puerto :3000")
-}) */
-
-app.listen(process.env.PORT || 3000, function(){
+//Starts the App running on the Port provided by Heroku, or in the Default if on Localhost:
+app.listen(process.env.PORT || port, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

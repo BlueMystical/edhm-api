@@ -1,7 +1,6 @@
-const express = require("express")
-const router = express.Router();
-const fs = require('fs');
-const accountRoutes = require('./account.js')
+const noteRoutes = require('./account.js');
 
-router.use(accountRoutes)
-module.exports = router;
+/* NADA QUE VER AQUI, VAYA AL 'account.js'  */
+module.exports = function(app, db) {  
+    noteRoutes(app, db);  
+};

@@ -99,7 +99,7 @@ accountRoutes.post("/", (req, res) => {
 });
 
 // Returns the whole JSON data file
-accountRoutes.get('/users', (req, res) => {
+accountRoutes.get('/users/file', (req, res) => {
   fs.readFile(edhmData, 'utf8', (err, data) => {
     if (err) {
       throw err;
@@ -128,14 +128,22 @@ accountRoutes.get('/users/list', (req, res) => {
 //POST Request to add a new Record for User Data, Existing Record will be Updated:
 accountRoutes.post('/users/add', (req, res) => {
   try {
-    if (typeof req.body !== 'undefined') {
+    //console.log(req);
+    //console.log(req.body);
+
+    if (req.body && Object.keys(req.body).length !== 0 && Object.getPrototypeOf(req.body) === Object.prototype) {
       var newRecord = req.body; //<- Obtiene el nuevo registro pasado en el Body de la Solicitud
       var existingRecords = getAccountData(); //<- Obtiene los Registros Actuales
 
+      //console.log(newRecord);
+        
       //Verifies the pre-existance of the new record:
       //var found = existingRecords.find(element => element.CommanderName === newRecord.CommanderName);
       var foundIndex = existingRecords.findIndex(element => element.CommanderName === newRecord.CommanderName);
       if (foundIndex != null && typeof foundIndex != 'undefined' && foundIndex >= 0) {
+
+        //console.log(foundIndex);
+
         //The New Record already Exists!
         existingRecords[foundIndex] = newRecord;
         saveAccountData(existingRecords); //<- Save the Changes
@@ -143,6 +151,7 @@ accountRoutes.post('/users/add', (req, res) => {
         _Response.success = true;
         _Response.result = true;
         _Response.message = 'User data Updated successfully (•̀ᴗ•́)و';
+        
       } else {
         //The New Record doesnt Exists
         existingRecords.push(newRecord); //<- Adds the New Record
@@ -176,6 +185,7 @@ accountRoutes.get('/users/find', (req, res) => {
 
     if (typeof req.query !== 'undefined' && Object.keys(req.query).length) {
       var existingRecords = getAccountData(); //<- Obtiene los Registros Actuales
+
       if (typeof existingRecords !== 'undefined' && existingRecords.length > 0) {
         _Response.success = true;
         _Response.result = MyArray.from(existingRecords).filterBy(req.query);
@@ -226,28 +236,8 @@ accountRoutes.get('/users/get-statistics', (req, res) => {
 
 accountRoutes.get('/users/show-statistics', (req, res) => {
   try {
-    var result = getStatistics();
-
+    //Re-directs to the Chart page:
     res.status(200).sendFile('chart.html', { root: './public' });
-
-    //res.render('chart.html', { root: './public' });
-
-    //const myHTML ='<!DOCTYPE html><html lang="es"><head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="author" content="BlueMystic - 2022"><meta name="copyright" content="EDHM_UI"><meta name="description" content="Error 404"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Error 404</title><style type="text/css">*{transition:all .6s}html{height:100%}body{font-family:Lato,sans-serif;color:#888;margin:0}#main{display:table;width:100%;height:100vh;text-align:center}.fof{display:table-cell;vertical-align:middle}.fof h1{font-size:50px;display:inline-block;padding-right:12px;animation:type .5s alternate infinite}@keyframes type{from{box-shadow:inset -3px 0 0 #888}to{box-shadow:inset -3px 0 0 transparent}}</style></head><body><div id="main"><div class="fof"><h1>Error 404</h1></div></div></html>';
-    //res.status(200).send(myHTML); 
-
-/*
-    if (typeof result !== 'undefined') {
-      _Response.success = true;
-      _Response.result = result;
-      _Response.message = 'Done.';
-    } else {
-      _Response.success = false;
-      _Response.result = null;
-      _Response.message = 'No records found!';
-    }*/
-
-    //res.status(200).send(_Response);   //<- OK 
-
   } catch (error) {
     _Response.success = false;
     _Response.result = { error: 500, message: error.message, stack_trace: error.stack };
@@ -256,6 +246,8 @@ accountRoutes.get('/users/show-statistics', (req, res) => {
   }
 });
 
+
+//---------------------------------------------------------------------------------------------------------
 // Update - using Put method
 accountRoutes.put('/account/:id', (req, res) => {
   var existAccounts = getAccountData()
@@ -279,5 +271,6 @@ accountRoutes.delete('/account/delete/:id', (req, res) => {
     saveAccountData(existAccounts);
     res.send(`accounts with id ${userId} has been deleted`)
   }, true);
-})
+});
+
 module.exports = accountRoutes
