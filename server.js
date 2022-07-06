@@ -7,9 +7,11 @@ const port           = 3000;
 
 /* -----------------------------------------------------------------
     ESTE ES UN BACKEND HECHO CON NODE.js v16.15 y Express.
-    Autor: Jhollman Chacon R.
-    Corre en el puerto 3000
-    http://localhost:3000/
+    Autor:          Jhollman Chacon R. (Blue Mystic) 2022 (•̀ᴗ•́)و    
+    
+    Development:    http://localhost:3000/
+    Produccion:     https://edhm-ui.herokuapp.com/
+    Source Code:    https://github.com/BlueMystical/edhm-api
 * ----------------------------------------------------------------- */
 // todo dentro de la carpeta 'public' se puede acceder estaticamente, en el navegador 'localhost:3000\favicon.ico'
 // middleware:
