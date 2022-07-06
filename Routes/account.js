@@ -28,10 +28,12 @@ const getStatistics = () => {
     Countries: [],
     Languages: [],
     Odyssey: [{ Value: 'Odyssey', Count: 0 },{ Value: 'Horizons', Count: 0 }],
-    GameMode: []
+    GameMode: [],
+    UserCount: 0
   }
 
   var existingRecords = getAccountData(); //<- Obtiene los Registros Actuales
+
   if (typeof existingRecords !== 'undefined' && existingRecords.length > 0) {
     existingRecords.forEach(userinfo => {
       //Si ya existe, le sumamos 1; Si no existe, lo agregamos
@@ -51,7 +53,8 @@ const getStatistics = () => {
       Found = result.GameMode.find(element => element.Value === userinfo.GameMode);
       if (Found != null && typeof Found != 'undefined') { Found.Count++; } else { result.GameMode.push({ Value: userinfo.GameMode, Count: 1 }); }
 
-    })   
+    });
+    result.UserCount = existingRecords.length;
   }
   return result
 }

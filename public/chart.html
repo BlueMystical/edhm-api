@@ -16,6 +16,7 @@
 
 <body>
 
+    <label id="lblUsersCount" for="CountriesChart">0</label>
     <canvas id="CountriesChart" height="200"></canvas>
     <canvas id="LanguagesChart" height="200"></canvas>
     <canvas id="OdysseyChart"  height="200"></canvas>
@@ -31,10 +32,11 @@
                 cache: 'no-cache'
             });
             fetch(myRequest).then(function (response) {
+                //console.log(response);
                 var contentType = response.headers.get("content-type");
                 if (contentType && contentType.indexOf("application/json") !== -1) {
                     return response.json().then(function (json) {
-                        //console.log(json);
+                        console.log(json);
                         var mData = json.result;
                         var barColors = ["#1F618D", "#148F77", "#A93226", "#A569BD", "#DC7633", "#5D6D7E", "#F7DC6F", "#76D7C4", "#D2B4DE"];
 
@@ -193,6 +195,9 @@
                                 }
                             });
                         }
+                    
+                        document.getElementById('lblUsersCount').innerHTML = mData.UserCount + ' Records.';
+
                     });
                 } else {
                     console.log("Oops, we haven't got JSON!");
