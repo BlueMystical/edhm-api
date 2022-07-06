@@ -27,7 +27,7 @@ const getStatistics = () => {
   var result = {
     Countries: [],
     Languages: [],
-    Odyssey: [{ Value: 'Odyssey', Count: 0 }],
+    Odyssey: [{ Value: 'Odyssey', Count: 0 },{ Value: 'Horizons', Count: 0 }],
     GameMode: []
   }
 
@@ -45,6 +45,7 @@ const getStatistics = () => {
 
       //3. Odyssey:
       if (userinfo.Odyssey === 'true') result.Odyssey[0].Count++;
+      if (userinfo.Odyssey === 'false') result.Odyssey[1].Count++;
 
       //4. GameMode:
       Found = result.GameMode.find(element => element.Value === userinfo.GameMode);
