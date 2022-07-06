@@ -104,12 +104,23 @@ accountRoutes.post("/", (req, res) => {
 
 // Returns the whole JSON data file
 accountRoutes.get('/users/file', (req, res) => {
-  fs.readFile(edhmData, 'utf8', (err, data) => {
+  /*fs.readFile(edhmData, 'utf8', (err, data) => {
     if (err) {
       throw err;
     }
     res.send(JSON.parse(data));
-  });
+  });*/
+  try {
+    //Returns the Whole file for Download:
+    res.setHeader('Content-disposition', 'attachment; filename=myData.json');
+    res.setHeader('Content-type', 'application/json');
+    res.download(edhmData, 'myData.json'); 
+
+  } catch (error) {
+    console.log(error);
+    _Response.message = error.message;
+    res.send(_Response);
+  }  
 });
 
 // Shows the Data of all Registered Users
