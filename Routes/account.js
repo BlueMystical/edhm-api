@@ -71,6 +71,15 @@ function stringToDate(_date, _format, _delimiter) {
   //var formatedDate = new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
   return new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
 }
+function cleanString(input) {
+  var output = "";
+  for (var i=0; i<input.length; i++) {
+      if (input.charCodeAt(i) <= 127 || input.charCodeAt(i) >= 160 && input.charCodeAt(i) <= 255) {
+          output += input.charAt(i);
+      }
+  }
+  return output;
+}
 
 //Esta Clase se usa para Filtrar los Registros
 class MyArray extends Array {
@@ -191,7 +200,8 @@ accountRoutes.post('/users/add', (req, res) => {
       var newRecord = req.body; //<- Obtiene el nuevo registro pasado en el Body de la Solicitud
       var existingRecords = getAccountData(); //<- Obtiene los Registros Actuales
 
-      //console.log(newRecord);
+      //Removes Non UTF-8 characters:
+      newRecord.CommanderName = cleanString(newRecord.CommanderName).replace(/[!@#$^&%*()+=[\]/{}|:<>?,.\\-]/g, '');
         
       //Verifies the pre-existance of the new record:
       //var found = existingRecords.find(element => element.CommanderName === newRecord.CommanderName);
@@ -293,6 +303,7 @@ accountRoutes.get('/users/get-statistics', (req, res) => {
 
 accountRoutes.get('/users/show-statistics', (req, res) => {
   try {
+    //console.log(cleanString('"ElCuñadodelChapulin^.*[]').replace(/[!@#$^&%*()+=[\]/{}|:<>?,.\\-]/g, ''));
     //Re-directs to the Chart page:
     res.status(200).sendFile('chart.html', { root: './public' });
   } catch (error) {
