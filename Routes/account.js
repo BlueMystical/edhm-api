@@ -59,23 +59,64 @@ const getStatistics = () => {
   return result
 }
 
+function stringToDate(_date, _format, _delimiter) {
+  var formatLowerCase = _format.toLowerCase();
+  var formatItems = formatLowerCase.split(_delimiter);
+  var dateItems = _date.split(_delimiter);
+  var monthIndex = formatItems.indexOf("mm");
+  var dayIndex = formatItems.indexOf("dd");
+  var yearIndex = formatItems.indexOf("yyyy");
+  var month = parseInt(dateItems[monthIndex]);
+  month -= 1;
+  //var formatedDate = new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
+  return new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
+}
+
 //Esta Clase se usa para Filtrar los Registros
 class MyArray extends Array {
   filterBy(argument) {
-    return  this.filter(function(el){
-      if (typeof argument == "object") {
-        // object with key/parameter pairs for filtering:
-        // {key1: 0, gender: "m"}
-        for (let key in argument) {
-          //if (argument[key] !== el[key]) return false; //<- Busqueda Exacta
-          if (el[key].toLowerCase().indexOf(argument[key].toLowerCase()) === -1) return false; //<- Busqueda parcial
-        };
-        return true;
-      } else if (typeof argument == "string") {
-        // string with logical expression with key names @-escaped, e.g.
-        // @gender == 'm' && @key1 == @key2
-        let expression = argument.split("@").join("el.")
-        return eval(expression);
+    return this.filter(function (el) {
+      try {
+        
+        if (typeof argument == "object") {
+          // object with key/parameter pairs for filtering:
+          // {key1: 0, gender: "m"}
+          //argument:  Date >= 2022-01-01 (yyyy-mm-dd)
+
+          for (let key in argument) {            
+
+            if (key.indexOf('Date') > -1) {
+              var Operators = key.split(' ');
+              var CriteriaDate = stringToDate(argument[key], 'yyyy-mm-dd', '-');
+              var ValueDate = stringToDate(el[Operators[0]], 'yyyy-mm-dd', '-');
+
+              switch (Operators[1]) {
+                case '<':                  
+                  return (ValueDate <= CriteriaDate); break;
+                case '>':   
+                  return (ValueDate >= CriteriaDate); break;
+                case '!':
+                  return (+ValueDate !== +CriteriaDate); break;
+                default:
+                  return (+ValueDate === +CriteriaDate); break;
+              }
+              
+            } else {
+              //if (argument[key] !== el[key]) return false; //<- Busqueda Exacta
+              if (el[key].toLowerCase().indexOf(argument[key].toLowerCase()) === -1) return false; //<- Busqueda parcial
+            }            
+          };
+          return true;
+        } else if (typeof argument == "string") {
+          // string with logical expression with key names @-escaped, e.g.
+          // @gender == 'm' && @key1 == @key2
+          let expression = argument.split("@").join("el.")
+          return eval(expression);
+        }
+      } catch (error) {
+        throw { 
+          error: 500, message: 'Criteria Field not found!', 
+          stack: 'at MyArray.filter (<anonymous>) at MyArray.filterBy ()' };
       }
     });
   }
@@ -218,6 +259,7 @@ accountRoutes.get('/users/find', (req, res) => {
       res.status(400).send(_Response);
     }
   } catch (error) {
+    //console.log(error);
     _Response.success = false;
     _Response.result = { error: 500, message: error.message, stack_trace: error.stack };
     _Response.message = "Internal Server Error";

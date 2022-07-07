@@ -11,20 +11,35 @@
 
     <title>Statistics Chart</title>
 
+    <!-- https://www.chartjs.org/docs/3.2.0/ -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
 </head>
 
 <body>
 
-    <label id="lblUsersCount" for="CountriesChart">0</label>
-    <canvas id="CountriesChart" height="200"></canvas>
-    <canvas id="LanguagesChart" height="200"></canvas>
-    <canvas id="OdysseyChart"  height="200"></canvas>
-    <canvas id="GameModeChart" height="200"></canvas>
+    <label id="lblUsersCount" for="CountriesChart"></label>
+    <canvas id="CountriesChart" height="200", width="400"></canvas>
+    <canvas id="LanguagesChart" height="200", width="400"></canvas>
+    <canvas id="OdysseyChart"  height="200", width="400"></canvas>
+    <canvas id="GameModeChart" height="200", width="400"></canvas>
 
-    <script>
-        //https://www.chartjs.org/docs/3.2.0/
+    <script>        
         try {
+            //Here we get the URL Params and set their default Values:
+            const urlParams = new URLSearchParams(window.location.search);
+            var ChartType = urlParams.get('type');
+            var ChartHeight = urlParams.get('height');
+            var ChartWidth = urlParams.get('width');
+
+            if (!ChartType) ChartType = 'doughnut';
+            if (!ChartHeight) ChartHeight = '200';
+            if (!ChartWidth) ChartWidth = '400';
+
+            console.log('url param: [type], (bar, line, pie, doughnut, radar, polarArea, bubble, scatter), Current: ' + ChartType);
+            console.log('url param: [height], (height of the Charts), Current: ' + ChartHeight); 
+            console.log('url param: [width], (width of the Charts), Current: ' + ChartWidth);
+
+            //Here we get the Data for the Charts:
             var myRequest = new Request('/users/get-statistics', {
                 method: 'GET',
                 headers: new Headers(),
@@ -32,12 +47,11 @@
                 cache: 'no-cache'
             });
             fetch(myRequest).then(function (response) {
-                //console.log(response);
                 var contentType = response.headers.get("content-type");
                 if (contentType && contentType.indexOf("application/json") !== -1) {
                     return response.json().then(function (json) {
-                        console.log(json);
                         var mData = json.result;
+                        //This are the Colors for the different 'Series' shown in the Charts:
                         var barColors = ["#1F618D", "#148F77", "#A93226", "#A569BD", "#DC7633", "#5D6D7E", "#F7DC6F", "#76D7C4", "#D2B4DE"];
 
                         //1. Grafico para los Paises:
@@ -50,9 +64,11 @@
                                 yValues.push(country.Count);
                             });
 
-                            var ctx = document.getElementById('CountriesChart').getContext('2d');
-                            var myChart = new Chart(ctx, {
-                                type: "bar",
+                            var ctx = document.getElementById('CountriesChart');
+                            ctx.setAttribute('height', ChartHeight);
+                            ctx.setAttribute('width', ChartWidth);
+                            var myChart = new Chart(ctx.getContext('2d'), {
+                                type: ChartType,
                                 data: {
                                     labels: xValues,
                                     datasets: [{
@@ -62,7 +78,10 @@
                                 },
                                 options: {
                                     plugins: {
-                                        legend: { display: false },
+                                        legend: { 
+                                            display: (ChartType === 'doughnut' || ChartType === 'pie') ? true : false, 
+                                            position: 'right' 
+                                        },
                                         title: {
                                             display: true,
                                             text: "EDHM_UI by Countries"
@@ -72,6 +91,7 @@
                                     responsive: false,
                                     scales: {
                                         y: {
+                                            display: (ChartType === 'doughnut' || ChartType === 'pie') ? false : true, 
                                             beginAtZero: true
                                         }
                                     }
@@ -89,9 +109,11 @@
                                 yValues.push(country.Count);
                             });
 
-                            var ctx = document.getElementById('LanguagesChart').getContext('2d');
-                            var myChart = new Chart(ctx, {
-                                type: "bar",
+                            var ctx = document.getElementById('LanguagesChart');
+                            ctx.setAttribute('height', ChartHeight);
+                            ctx.setAttribute('width', ChartWidth);
+                            var myChart = new Chart(ctx.getContext('2d'), {
+                                type: ChartType,
                                 data: {
                                     labels: xValues,
                                     datasets: [{
@@ -101,9 +123,12 @@
                                 },
                                 options: {
                                     plugins: {
-                                        legend: { display: false },
+                                        legend: { 
+                                            display: (ChartType === 'doughnut' || ChartType === 'pie') ? true : false, 
+                                            position: 'right' 
+                                        },
                                         title: {
-                                            display: true,
+                                            display: true,                                            
                                             text: "EDHM_UI by Languages"
                                         }
                                     },
@@ -111,6 +136,7 @@
                                     responsive: false,
                                     scales: {
                                         y: {
+                                            display: (ChartType === 'doughnut' || ChartType === 'pie') ? false : true, 
                                             beginAtZero: true
                                         }
                                     }
@@ -128,9 +154,11 @@
                                 yValues.push(country.Count);
                             });
 
-                            var ctx = document.getElementById('OdysseyChart').getContext('2d');
-                            var myChart = new Chart(ctx, {
-                                type: "bar",
+                            var ctx = document.getElementById('OdysseyChart');
+                            ctx.setAttribute('height', ChartHeight);
+                            ctx.setAttribute('width', ChartWidth);
+                            var myChart = new Chart(ctx.getContext('2d'), {
+                                type: ChartType,
                                 data: {
                                     labels: xValues,
                                     datasets: [{
@@ -140,16 +168,20 @@
                                 },
                                 options: {
                                     plugins: {
-                                        legend: { display: false },
+                                        legend: { 
+                                            display: (ChartType === 'doughnut' || ChartType === 'pie') ? true : false, 
+                                            position: 'right' 
+                                        },
                                         title: {
                                             display: true,
-                                            text: "EDHM_UI by Odyssey usage"
+                                            text: "EDHM_UI by Game Version"
                                         }
                                     },
                                     maintainAspectRatio: false,
                                     responsive: false,
                                     scales: {
                                         y: {
+                                            display: (ChartType === 'doughnut' || ChartType === 'pie') ? false : true, 
                                             beginAtZero: true
                                         }
                                     }
@@ -167,9 +199,11 @@
                                 yValues.push(country.Count);
                             });
 
-                            var ctx = document.getElementById('GameModeChart').getContext('2d');
-                            var myChart = new Chart(ctx, {
-                                type: "bar",
+                            var ctx = document.getElementById('GameModeChart');
+                            ctx.setAttribute('height', ChartHeight);
+                            ctx.setAttribute('width', ChartWidth);
+                            var myChart = new Chart(ctx.getContext('2d'), {
+                                type: ChartType,
                                 data: {
                                     labels: xValues,
                                     datasets: [{
@@ -179,7 +213,10 @@
                                 },
                                 options: {
                                     plugins: {
-                                        legend: { display: false },
+                                        legend: { 
+                                            display: (ChartType === 'doughnut' || ChartType === 'pie') ? true : false, 
+                                            position: 'right' 
+                                        },
                                         title: {
                                             display: true,
                                             text: "EDHM_UI by GameMode"
@@ -189,6 +226,7 @@
                                     responsive: false,
                                     scales: {
                                         y: {
+                                            display: (ChartType === 'doughnut' || ChartType === 'pie') ? false : true, 
                                             beginAtZero: true
                                         }
                                     }
@@ -196,14 +234,14 @@
                             });
                         }
                     
-                        document.getElementById('lblUsersCount').innerHTML = mData.UserCount + ' Records.';
+                        document.getElementById('lblUsersCount').innerHTML = '<h2>' + mData.UserCount + ' Records.</h2>';
 
                     });
                 } else {
                     console.log("Oops, we haven't got JSON!");
                 }
             })
-                .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error:', error));
         } catch (error) {
             console.log(error);
         }
