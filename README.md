@@ -21,19 +21,19 @@ Routes
 -------------
 - /users/file
   - Method:        GET
-  - Params:         None
-  - Description:  Download the whole DataSet in a JSON file.
+  - Params:        None
+  - Description:   Download the whole DataSet in a JSON file.
 - /users/list
   - Method:        GET
-  - Params:         None
-  - Description:  Returns the List of all registered users.
+  - Params:        None
+  - Description:   Returns the List of all registered users.
 - /users/add
   - Method:        POST
-  - Params:         JSON Data in the Request's Body.
-  - Description:  Adds a new Register for an User, Existing User will be Updated.
+  - Params:        JSON Data in the Request's Body.
+  - Description:   Adds a new Register for an User, Existing User will be Updated.
 - /users/find
-  - Method:        GETParams:         URL 
-  - Parameters, The name of the Fields (from the JSON) and the Value to search for, with partial text search.
+  - Method:        GET
+  - Params:        URL Parameters, The name of the Fields and the Value to search for, partial text search enabled. Can compare Dates: 'Date >= 2022-01-01' (yyyy-mm-dd).
   - Description:  Returns an Array with all Results found for the specified criteria.
 - /users/get-statistics
   - Method:        GET
@@ -41,5 +41,8 @@ Routes
   - Description:  Returns an array with Totals for most of the Fields.
 - /users/show-statistics
   - Method:        GET
-  - Params:         None
+  - Params:        
+    - [type]: bar, line, pie, doughnut, radar, polarArea, bubble, scatter | Default: doughnut
+    - [height]: Height of the Charts, Default: 200px
+    - [width]: Width of the Charts, Default: 400px    
   - Description:  Returns the Statistics showing them in Charts.
