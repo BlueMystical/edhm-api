@@ -149,7 +149,7 @@ class MyArray extends Array {
 //======================================================================================================================
 //* ESTA ES LA RAIZ DEL SERVIDOR. 
   //  Cualquier solicitud x GET se redirije a la pagina de Error y devuelve 'status: 403 (Forbidden)'
-accountRoutes.get('/', function(req, res) { res.status(403).sendFile('404.html', { root: './public' }); });
+accountRoutes.get('/', function(req, res) { res.status(404).sendFile('404.html', { root: './public' }); });
 accountRoutes.post("/", (req, res) => {
   _Response.result = { error: 404, message: "NO se ha encontrado lo que estaba buscando." };
   res.send(_Response);
@@ -352,6 +352,12 @@ accountRoutes.get('/users/get-country', (req, res) => {
 });
 
 //---------------------------------------------------------------------------------------------------------
-
+accountRoutes.get('*', (req, res) => {
+  res.status(404).sendFile('404.html', { root: './public' });
+});
+accountRoutes.post("*", (req, res) => {
+  _Response.result = { error: 404, message: "We could not find what you was looking for, ¿Are you Lost?." };
+  res.status(404).send(_Response);
+});
 
 module.exports = accountRoutes
