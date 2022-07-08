@@ -2,7 +2,7 @@ const fs = require('fs');
 const express = require("express")
 const accountRoutes = express.Router();
 const edhmData = './Data/edhm_users.json';
-
+const countriesData = './Data/countries.json';
 //======================================================================================================================
 //** METODOS INTERNOS */
 //======================================================================================================================
@@ -14,8 +14,8 @@ const edhmData = './Data/edhm_users.json';
 };
 
 const saveAccountData = (data) => {
-  const stringifyData = JSON.stringify(data)
-  fs.writeFileSync(edhmData, stringifyData)
+  const stringifyData = JSON.stringify(data);
+  fs.writeFileSync(edhmData, stringifyData);
 }
 
 const getAccountData = () => {
@@ -39,7 +39,8 @@ const getStatistics = () => {
       //Si ya existe, le sumamos 1; Si no existe, lo agregamos
       //1. Countries:
       var Found = result.Countries.find(element => element.Value === userinfo.Country);
-      if (Found != null && typeof Found != 'undefined') { Found.Count++; } else { result.Countries.push({ Value: userinfo.Country, Count: 1 }); }
+      if (Found && typeof Found != 'undefined') { if (Found.Value != '') { Found.Count++; } }
+      else { if (userinfo.Country != '') { result.Countries.push({ Value: userinfo.Country, Count: 1 }); } }
 
       //2. Languages:
       Found = result.Languages.find(element => element.Value === userinfo.Language);
@@ -55,6 +56,8 @@ const getStatistics = () => {
 
     });
     result.UserCount = existingRecords.length;
+    result.Countries.sort((a, b) => (a.Value > b.Value) ? 1 : ((b.Value > a.Value) ? -1 : 0));
+    result.Languages.sort((a, b) => (a.Value > b.Value) ? 1 : ((b.Value > a.Value) ? -1 : 0));
   }
   return result
 }
@@ -207,9 +210,6 @@ accountRoutes.post('/users/add', (req, res) => {
       //var found = existingRecords.find(element => element.CommanderName === newRecord.CommanderName);
       var foundIndex = existingRecords.findIndex(element => element.CommanderName === newRecord.CommanderName);
       if (foundIndex != null && typeof foundIndex != 'undefined' && foundIndex >= 0) {
-
-        //console.log(foundIndex);
-
         //The New Record already Exists!
         existingRecords[foundIndex] = newRecord;
         saveAccountData(existingRecords); //<- Save the Changes
@@ -314,31 +314,44 @@ accountRoutes.get('/users/show-statistics', (req, res) => {
   }
 });
 
+//Parametro: 'code', Deveuleve el Pais correspondiente al codigo ISO.
+accountRoutes.get('/users/get-country', (req, res) => {
+  try {
+    if (typeof req.query !== 'undefined' && Object.keys(req.query).length && typeof req.query.code != 'undefined') {
+      var Query = req.query;
+      const jsonData = JSON.parse(fs.readFileSync(countriesData));
+
+      if (jsonData && jsonData.length > 0) {
+        for (var i = 0; i < jsonData.length; i++) {
+          var Keys = Object.keys(jsonData[i]);
+          var Codes = jsonData[i][Keys[0]].split('/');
+          var ISO_1 = Codes[0].toLowerCase();
+          var ISO_2 = Codes[1].toLowerCase();
+
+          if (ISO_1 === Query.code.toLowerCase() || ISO_2 === Query.code.toLowerCase) {
+            _Response.result = { CountryName: Keys[0], ISO: jsonData[i][Keys[0]] };
+            _Response.message = Keys[0] + ' (' + Query.code.toUpperCase() + ')';
+            break;
+          }
+        }
+        _Response.success = true;
+        res.status(200).send(_Response);   //<- OK 
+      };
+    } else {
+      _Response.result = { error: 400, message: "Expected parameters have not been passed." };
+      _Response.success = false;
+      _Response.message = "Bad Request";
+      res.status(400).send(_Response);
+    };
+  } catch (error) {
+    _Response.success = false;
+    _Response.result = { error: 500, message: error.message, stack_trace: error.stack };
+    _Response.message = "Internal Server Error";
+    res.status(500).send(_Response);
+  }
+});
 
 //---------------------------------------------------------------------------------------------------------
-// Update - using Put method
-accountRoutes.put('/account/:id', (req, res) => {
-  var existAccounts = getAccountData()
-  fs.readFile(dataPath, 'utf8', (err, data) => {
-    const accountId = req.params['id'];
-    existAccounts[accountId] = req.body;
 
-    saveAccountData(existAccounts);
-    res.send(`accounts with id ${accountId} has been updated`)
-  }, true);
-});
-
-//delete - using delete method
-accountRoutes.delete('/account/delete/:id', (req, res) => {
-  fs.readFile(dataPath, 'utf8', (err, data) => {
-    var existAccounts = getAccountData()
-
-    const userId = req.params['id'];
-
-    delete existAccounts[userId];
-    saveAccountData(existAccounts);
-    res.send(`accounts with id ${userId} has been deleted`)
-  }, true);
-});
 
 module.exports = accountRoutes
