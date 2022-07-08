@@ -352,8 +352,19 @@ accountRoutes.get('/users/get-country', (req, res) => {
 });
 
 //---------------------------------------------------------------------------------------------------------
+//A Todas las Solicitudes que no figuren en la lista anterior, se les escupira con un Error 404:
 accountRoutes.get('*', (req, res) => {
-  res.status(404).sendFile('404.html', { root: './public' });
+  res.status(404);
+    if (req.accepts('html')) {
+        res.sendFile('404.html', { root: './public' });
+        return;
+    }
+    if (req.accepts('json')) {
+        _Response.result = { error: 404, message: "We could not find what you was looking for, ¿Are you Lost?." };
+        res.json(_Response);
+        return;
+    }
+    res.type('txt').send("We could not find what you was looking for, ¿Are you Lost?.");
 });
 accountRoutes.post("*", (req, res) => {
   _Response.result = { error: 404, message: "We could not find what you was looking for, ¿Are you Lost?." };

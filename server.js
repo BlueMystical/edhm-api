@@ -15,30 +15,14 @@ const port           = 3000;
 * ----------------------------------------------------------------- */
 // todo dentro de la carpeta 'public' se puede acceder estaticamente, en el navegador 'localhost:3000\favicon.ico'
 // middleware:
-app.use(
-    bodyParser.urlencoded(
-        { extended: true }
-    ),
-    express.json(),
-    express.static(         
-        __dirname + '/public', 
-        { index: '404.html' }
-    ) 
-);
 app.set("view options", { layout: false });
+app.use(
+    bodyParser.urlencoded({ extended: true }),
+    express.json(),
+    express.static(__dirname + '/public', { index: '404.html' }) 
+);
 app.use('/', routes);  //<- Llama al archivo de Rutas.
-app.use(function (req, res, next) {
-    res.status(404);
-    if (req.accepts('html')) {
-        res.render('404', { url: req.url, root: './public'  });
-        return;
-    }
-    if (req.accepts('json')) {
-        res.json({ error: 'Not found' });
-        return;
-    }
-    res.type('txt').send('Not found');
-});
+
 
 //Starts the App running on the Port provided by Heroku, or in the Default if on Localhost:
 app.listen(process.env.PORT || port, function(){
