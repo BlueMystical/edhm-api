@@ -1,7 +1,5 @@
 const express        = require('express');
 const bodyParser     = require('body-parser');
-const routes         = require('./Routes/Route')
-const fs             = require('fs');
 const app            = express();
 const port           = 3000;
 
@@ -21,8 +19,7 @@ app.use(
     express.json(),
     express.static(__dirname + '/public', { index: '404.html' }) 
 );
-app.use('/', routes);  //<- Llama al archivo de Rutas.
-
+require('./routes/index')(app, {}); //<- Llama al archivo de Rutas.
 
 //Starts the App running on the Port provided by Heroku, or in the Default if on Localhost:
 app.listen(process.env.PORT || port, function(){
