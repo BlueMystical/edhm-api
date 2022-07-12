@@ -18,6 +18,18 @@ module.exports = function (app, db) {
   //======================================================================================================================
   //* ESTA ES LA RAIZ DEL SERVIDOR. 
 
+  app.get('/', (req, res) => {
+    try {
+      //Re-directs to the Chart page:
+      res.status(200).sendFile('index.html', { root: './public' });
+    } catch (error) {
+      _Response.success = false;
+      _Response.result = { error: 500, message: error.message, stack_trace: error.stack };
+      _Response.message = "Internal Server Error";
+      res.status(500).send(_Response);
+    }
+  });
+
   // Shows the Data of all Registered Users
   app.get('/users/list', (req, res) => {
     _Response = JsonDB.JSONDB_GetUsers();
