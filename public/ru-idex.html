@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html itemscope itemtype="https://schema.org/QAPage" class="html__responsive " lang="ru">
+
+</html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>EDHM-UI | Элитный опасный мод Hud</title>
+  <meta name="description"
+    content="Мод для Elite Dangerous, позволяющий настроить практически любой элемент HUD корабля.">
+
+  <!-- Favicons -->
+  <link href="./favicon.ico" rel="icon">
+  <link href="./img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Info for Social Networks -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://edhm-ui.herokuapp.com">
+  <meta property="og:title" content="EDHM-UI | Elite Dangerous Hud Mod">
+  <meta property="og:site_name" content="EDHM-UI">
+  <meta property="og:description"
+    content="Мод для Elite Dangerous, позволяющий настроить практически любой элемент HUD корабля.">
+  <meta property="og:image" content="./img/about-bg.jpg" itemprop="image primaryImageOfPage">
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="EDHM-UI | Elite Dangerous Hud Mod" />
+  <meta name="keywords" content="Elite Dangerous, hud, мод, edhm, цвета" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTDN6FD8LF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XTDN6FD8LF');
+  </script>
+
+  <!-- =======================================================
+  * Template Name: Restaurantly - v3.7.0
+  * Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+    <!-- ======= Top Bar ======= -->
+    <div id="topbar" class="d-flex align-items-center fixed-top">
+      <div class="container d-flex justify-content-center justify-content-md-between">
+  
+        <div class="contact-info d-flex align-items-center">
+          <i class="bi bi-phone d-flex align-items-center"><span><a href="https://discord.gg/ZaRt6bCXvj"
+                target="_blank">Присоединяйтесь к нашему раздору</a></span></i>
+          <i class="bi bi-clock d-flex align-items-center ms-4"><span><a href="https://github.com/BlueMystical/EDHM_UI"
+                target="_blank">Посетите GitHub</a></span></i>
+        </div>
+  
+        <div class="languages d-none d-md-flex align-items-center">
+          <ul>            
+            <li><a href="./index.html">En</a></li>
+            <li><a href="./de-index.html">De</a></li>
+            <li>Ru</li>            
+          </ul>
+        </div>
+      </div>
+    </div>
+
+      <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-cente">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+
+      <!-- <h1 class="logo me-auto me-lg-0"><a href="index.html">EDHM - UI</a></h1> -->
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"> EDHM - UI</a>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+            <li><a class="nav-link scrollto active" href="#hero">Главная</a></li>
+            <li><a class="nav-link scrollto" href="#about">О программе</a></li>
+            <li><a class="nav-link scrollto" href="#installing">Установка</a></li>
+            <li><a class="nav-link scrollto" href="#themes">Темы</a></li>
+            <li><a class="nav-link scrollto" href="#customization">Настройка</a></li>
+            <li><a class="nav-link scrollto" href="#creation">Создание</a></li>
+            <li><a class="nav-link scrollto" href="#support">Поддержка</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        <a href="https://github.com/BlueMystical/EDHM_UI/releases/latest/download/EDHM_UI_Setup.msi"
+          class="book-a-table-btn scrollto d-none d-lg-flex">Загрузить</a>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Добро пожаловать в <span>EDHM + UI</span></h1>
+          <h2>Последний апельсин, который вы увидите.</h2>
+
+          <div class="btns">
+            <a href="#about" class="btn-menu animated fadeInUp scrollto">Learn More</a>
+            <a href="https://github.com/BlueMystical/EDHM_UI/releases/latest/download/EDHM_UI_Setup.msi"
+              class="btn-book animated fadeInUp scrollto">Загрузить сейчас</a>
+            </div>
+        </div>
+        <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in"
+          data-aos-delay="200">
+          <a href="https://www.youtube.com/watch?v=7MqgLzI-8fA" data-width="1080px" data-height="auto"
+            class="glightbox play-btn"></a>
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="row">
+            <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+              <div class="about-img">
+                <img src="assets/img/about.jpg" alt="">
+              </div>
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+          <h3>Elite Dangerous HUD Mod (EDHM)</h3>
+          <p class="fst-italic">
+            Это мод, созданный CMR GeorjCostanza <a href="https://inara.cz/cmdr/169177/" target="_blank">@psychicEgg</a><br>
+            EDHM позволяет точно изменять цвет практически любого элемента HUD без раздражающих побочных эффектов метода XML.<br>
+            Мод является приложением программы для модификации шейдеров 3Dmigoto и поэтому доступен только на ПК.</p>
+          <ул>
+            <li><i class="bi bi-check-circle"></i> Первоначально опубликовано по адресу <a href="https://forums.frontier.co.uk/threads/elite-dangerous-hud-mod- edhm.557033/" target="_blank">Форумы FDev.</a></li>
+            <li><i class="bi bi-check-circle"></i> И на <a href="https://github.com/psychicEgg/EDHM" target="_blank">странице GitHub автора</a></li>
+            <li><i class="bi bi-check-circle"></i> вот <a href="https://github.com/bo3b/3Dmigoto/releases" target="_blank">3Dmigoto</a></li>
+          </ul>
+          <p>
+            Он также позволяет изменить освещение салона на любой цвет или даже на двухцветный, если вы предпочитаете. <br>
+            Мы также уменьшили яркость некоторых индикаторов приборной панели, которые светят прямо вам в лицо, чтобы снизить утомляемость глаз.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- Конец раздела о программе -->
+
+    <!-- ======= About Section 2======= -->
+    <section id="about2" class="about">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="row">
+            <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
+              <div class="about-img">
+                <img src="assets/img/edhm-ui.jpg" alt="">
+              </div>
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+          <h3>EDHM - пользовательский интерфейс</h3>
+          <p class="fst-italic">
+            EDHM_UI — это пользовательский интерфейс для EDHM, разработанный <a href="https://inara.cz/cmdr/262694/" target="_blank">@Blue Mystic</a>.<br><br>
+            Чтобы использовать EDHM отдельно, вам потребуется вручную отредактировать сложные файлы конфигурации.<br>
+            Это не подходит для обычного пользователя, поэтому Blue Mystic с разрешения автора EDHM создала программу пользовательского интерфейса для EDHM.<br>
+          </p>
+          <p>Текущие функции включают:</p>
+          <ул>
+            <li><i class="bi bi-check-circle"></i> Позволяет пользователю изменять все параметры с помощью простого графического интерфейса.</li>
+            <li><i class="bi bi-check-circle"></i> В комплекте с последней версией EDHM — нет необходимости устанавливать EDHM отдельно.</li>
+            <li><i class="bi bi-check-circle"></i> В комплекте с множеством готовых тем, созданных сообществом.</li>
+            <li><i class="bi bi-check-circle"></i> Полностью совместим с Horizons и Odyssey!</li>
+            <li><i class="bi bi-check-circle"></i> Доступен как открытый исходный код на <a href="https://github.com/BlueMystical/EDHM_UI" target="_blank">GitHub. Страница</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- Конец раздела 2 -->
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+        <h2>Почему мы</h2>
+        <p>Почему стоит выбрать наш мод</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-4">
+          <div class="box" data-aos="zoom-in" data-aos-delay="100">
+            <span>01</span>
+            <h4>Простая установка</h4>
+            <p>EDHM-UI имеет очень простую в использовании программу установки.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box" data-aos="zoom-in" data-aos-delay="200">
+            <span>02</span>
+            <h4>Свобода</h4>
+            <p>EDHM позволяет настроить цвет практически любого элемента HUD.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box" data-aos="zoom-in" data-aos-delay="300">
+            <span>03</span>
+            <h4> Апельсинов больше нет</h4>
+            <p>С более чем сотней настраиваемых цветовых тем вы больше не увидите оранжевый цвет, если только вам этого не хочется.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+</section><!-- End Why Us Section -->
+
+    <!-- ======= Instalation Section ======= -->
+    <section id="installing" class="specials">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+        <h2>Как</h2>
+        <p>Установить EDHM-UI</p>
+      </div>
+
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <!-- Меню слева -->
+        <div class="col-lg-3">
+          <ul class="nav nav-tabs flex-column">
+            <li class="nav-item">
+              <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Загрузить</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Запустите программу установки</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Первый запуск</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Поддержка</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tab-1">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Загрузить программу установки EDHM-UI</h3>
+                  <p class="fst-italic">EDHM_UI поставляется с последней доступной версией EDHM (это означает, что вы
+                    Нужно ТОЛЬКО загрузить пользовательский интерфейс, чтобы иметь ОБЕ) и множество цветовых тем, созданных сообществом.</p>
+                  <p>Вы можете загрузить последнюю версию установщика EDHM-UI здесь:</p>
+                  <ul>
+                    <li><a href="https://github.com/BlueMystical/EDHM_UI/releases/latest" target="_blank"> GitHub Страница</a></li>
+                    <li><a href="https://github.com/BlueMystical/EDHM_UI/releases/latest/download/EDHM_UI_Setup.msi" target="_blank"> Эта прямая ссылка</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 text-center order-1 order-lg-2">
+              <img src="assets/img/specials-1.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab-2">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Закройте игру перед началом установки</h3>
+                <p class="fst-italic">Правило № 1 моддинга любой игры:</p>
+                <p>Закройте игру перед установкой или обновлением ЛЮБЫХ модов.</p>
+                <p>Это связано с тем, что мод должен затрагивать определенные файлы, которые используются исключительно игрой.</p>
+                <p>Если игра запущена, мод не установится правильно, поэтому... <b>Закройте игру</b>.</p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="assets/img/specials-2.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-3">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Первый запуск</h3>
+                <p class="fst-italic">При первом запуске пользовательского интерфейса вам будет предложено указать путь к папки с игрой.</p>
+                <p>Вы можете установить пути двумя способами:</p>
+                <ul>
+                  <li> Вручную (для опытных пользователей) либо скопировав/вставив полный путь в текстовое поле, либо нажимая кнопки [...], чтобы найти исполняемый файл игры.</li>
+                  <li> Автоматически, нажав зеленую кнопку "Помощник" и следуя ее инструкциям.</li>
+                </ul>
+                <p>Вы избавите себя от многих головных болей, если просто нажмете зеленую кнопку и сделаете то, что она говорит.</p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="assets/img/specials-3.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-4">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Получить поддержку</h3>
+                <p>У EDHM отличное и дружелюбное сообщество, которое вместе с нашими модераторами и администраторами поможет вам решить любые проблемы, которые могут у вас возникнуть.</p>
+                <p>Приглашаем вас <a href="https://discord.gg/ZaRt6bCXvj" target="_blank">присоединиться к нашему Discord</a> и стать частью сообщества EDHM.</p>
+                <a href="https://discord.com/download" target="_blank"><img
+                    src="assets/img/Discord-Logo+Wordmark-Color.png" alt="Получить Discord" width="300" height="83"></a>
+
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <img src="assets/img/discord.png" alt="" class="img-fluid">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Specials Section -->
+
+    <!-- ======= Themes Section ======= -->
+    <section id="themes" class="customize">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+        <h2>Как</h2>
+        <p>Использовать цветовые темы</p>
+      </div>
+
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <!-- Меню слева -->
+        <div class="col-lg-3">
+          <ul class="nav nav-tabs flex-column">
+            <li class="nav-item"><a class="nav-link active show" data-bs-toggle="tab" href="#theme-tab-1">Выберите тему</a></a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#theme-tab-2">Управление темами</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#theme-tab-3">Предварительный просмотр темы</a></li>
+        </ul>
+    </div>
+    <div class="col-lg-9 mt-4 mt-lg-0">
+      <div class="tab-content">
+
+        <div class="tab-pane active show" id="theme-tab-1">
+          <div class="row">
+            <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Выберите тему</h3>
+                  <p class="fst-italic">Самый простой способ начать — выбрать одну из множества пользовательских цветовых тем, созданных и опубликованных сообществом EDHM.</p>
+                  <p>Для этого сделайте следующее:</p>
+                  <ул>
+                    <li> Нажмите на любую тему в списке.</li>
+                    <li> Нажмите кнопку "Применить тему".</li>
+                    <li> Alt + Tab для перехода к игре и нажмите клавишу F11.</li>
+                  </ul>
+                  <p><a href="#theme-tab-1">[F11]</a> — это ключ привязки, установленный EDHM, он будет использоваться для обновления любых внесенных вами изменений.</p>
+                  <img src="assets/img/f11.png" alt="F11 Key">
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <img src="assets/img/themes.png" alt="" class="img-fluid">
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="theme-tab-2">
+              <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Управление темами</h3>
+                  <p>EDMH поставляется с множеством тем, и не все из них могут прийтись вам по вкусу, это нормально.</p>
+                  <p>Вы можете установить любую тему в качестве "Избранной" и, переключив кнопку, вы можете отфильтровать, чтобы видеть только избранное.</p>
+                  <p>Вы также можете импортировать и экспортировать темы, но при каждом обновлении программы пользовательского интерфейса будет включаться любая новая общая тема, поэтому вам не нужно ничего импортировать.</p>
+                  <p>Мы поговорим об экспорте тем чуть позже.</p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <img src="assets/img/theme-managing.png" alt="" class="img-fluid">
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="theme-tab-3">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Предварительный просмотр тем</h3>
+                    <p>Все темы имеют миниатюру, которая отображается в списке тем и дает представление о том, как выглядит тема.</p>
+                    <p>Кроме того, у всех тем есть изображение "Большого предварительного просмотра", которое вы можете увидеть по:</p>
+                    <ul>
+                      <li> Щелкните правой кнопкой мыши любую тему в списке.</li>
+                      <li> Нажмите на меню "Предварительный просмотр темы".</li>
+                      <li> Изображение будет отображаться в вашем веб-браузере по умолчанию.</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                  <img src="assets/img/theme-preview.png" alt="" class="img-fluid">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Themes Section -->
+
+    <!-- ======= Customization Section ======= -->
+    <section id="customization" class="specials">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+        <h2>Как</h2>
+        <p>Настроить элементы HUD</p>
+      </div>
+
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-3">
+          <ul class="nav nav-tabs flex-column">
+            <li class="nav-item"><a class="nav-link active show" data-bs-toggle="tab" href="#cus-tab-1">Введение</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cus-tab-2">Панель сведений</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cus-tab-3">Палитра цветов</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cus-tab-5">Элементы поиска</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#cus-tab-4">Применить изменения</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="cus-tab-1">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Настройка элементов HUD</h3>
+                  <p class="fst-italic">Вы уже знакомы с модом?</p>
+                  <p>Если да, то вы готовы внести свои собственные изменения в элементы Game Hud.</p>
+                  <p>Программа пользовательского интерфейса группирует множество различных модифицируемых элементов в плитки, которые отображаются в левой части окна</p>
+                  <p>Вы можете щелкнуть любую из этих плиток, и все настройки будут показаны справа, на <a href="#cus-tab-2">панели сведений</a>.</p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/tiles-1.png" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="cus-tab-2">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Панель сведений</h3>
+                  <p>Существуют различные виды настроек, которые вы можете настроить, чтобы игра выглядела именно так, как вы хотите.</p>
+                  <ул>
+                    <li>Комбо-элементы: вы можете выбрать один из нескольких вариантов.</li>
+                    <li>Цвет элементов: вы можете выбрать ЛЮБОЙ цвет, который вам нравится.</li>
+                    <li>Элементы ползунка: используются для управления яркостью или прозрачностью многих элементов.</li>
+                  </ul>
+                  <p>Нажмите слева от любого элемента, чтобы выбрать его, его описание будет показано внизу.</p>
+                  <p>Наведите указатель мыши на любой элемент, чтобы открыть его описание, а иногда и просмотреть предварительный просмотр элемента.</p>
+                  <p></p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/details-panel.png" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="cus-tab-3">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Палитра цветов</h3>
+                    <p>Программа пользовательского интерфейса имеет расширенную палитру цветов, которая позволит вам выбрать любой желаемый цвет.</p>
+                    <p>По умолчанию он имеет 2 цветовые палитры:</p>
+                    <ул>
+                      <li> Персонализированный: отображаются все цвета, используемые в текущей теме.</li>
+                      <li> Стандартный: показывает набор стандартных цветов на выбор.</li>
+                    </ul>
+                    <p>Нажмите кнопку <a href="#cus-tab-3">Другие цвета</a>, чтобы отобразить расширенную палитру цветов RGB.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/color-pick.png" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="cus-tab-4">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Применить изменения</h3>
+                    <p>Если вы хотите увидеть свои изменения в игре, вам придется сначала применить их.</p>
+                    <p>Нажмите кнопку <a href="#cus-tab-4">Применить тему</a>, затем ALT+TAB выберите игру и нажмите кнопку <a
+                        href="#cus-tab-4">клавиша F11</a></p>
+                    <p></p>
+                    <p class="fst-italic">Очень важно, чтобы при внесении изменений вы НЕ нажимали ни на одну тему в списке, даже на ту, которую вы редактируете; если вы это сделаете, сохраненные настройки нажатого
+                      тема будет загружена, и вы потеряете все несохраненные изменения.</p>
+                    <p>Когда вы примените изменения, они будут сохранены в <a href="#cus-tab-4">Текущих настройках</a>,
+                      а текущие настройки будут перезаписываться каждый раз, когда вы применяете тему.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/apply-changes.png" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="cus-tab-5">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Элементы поиска</h3>
+
+                    <p>На главной панели вы увидите <a href="#cus-tab-5">окно поиска</a>, которое можно использовать для поиска любого элемента.</p>
+                    <p>Поиск принимает частичные имена, так что вы можете легко найти любой элемент, который вы хотите.</p>
+                    <p>Также можно выполнять поиск по названиям тем и авторам тем.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/search.png" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Specials Section -->
+
+    <!-- ======= Creation Section ======= -->
+    <section id="creation" class="customize">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+        <h2>Как</h2>
+        <p>Создайте свою тему</p>
+      </div>
+
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-3">
+          <ul class="nav nav-tabs flex-column">
+            <li class="nav-item"><a class="nav-link active show" data-bs-toggle="tab" href="#create-tab-1">Выберите базовую тему</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#create-tab-2">Сохранить тему</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#create-tab-3">Создать миниатюру</a></li >
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#create-tab-4">Экспорт темы</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="create-tab-1">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Выберите базовую тему</h3>
+
+                  <p>Вы можете использовать любую тему в качестве основы для своей собственной, просто выберите ее в списке и начните вносить изменения.</p>
+                  <p>Вам помогут две специальные темы:</p>
+                  <ул>
+                    <li> Тема <a href="#create-tab-1">Elite Default — ORANGE</a>, у которой, как вы понимаете, все настройки установлены по умолчанию, поэтому она эквивалентна немодифицированной игре.</ ли>
+                    <li> В теме <a href="#create-tab-1">@XML – Импорт цвета</a> все настройки настроены на использование XML. Используйте это, если хотите импортировать старые конфигурации цветов XML.</ ли>
+                  </ul>
+                  <p>Выберите любую тему и примените ее, затем вы можете нажать и использовать <a href="#cus-tab-4">Текущие настройки</a> и начать вносить свои собственные изменения.</Select></p >
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/themes-2.png" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="create-tab-2">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Сохранить тему</h3>
+
+                  <p>Превращение ваших текущих настроек в тему — это всегда хорошая идея, чтобы избежать потери ваших данных при любом новом обновлении FDev, они любят время от времени стирать все в папке с игрой.
+                    Темы сохраняются в вашей папке <a href="#create-tab-3">Мои документы</a>, где никто, кроме вас, не сможет их трогать.</p>
+
+                  <p>Итак, если у вас уже есть нужные настройки, самое время сохранить их как тему. Нажмите кнопку <a href="#create-tab-3">Создать новую тему</a>, дайте ей имя и укажите имя автора.</p>
+
+                  <p class="fst-italic">ВНИМАНИЕ! Если вы используете имя существующей темы, эта тема будет перезаписана.</p>
+                  <p>Ваша недавно созданная тема будет единственной в списке без миниатюры.</p>
+                  </br>
+                  <p></p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/new_theme.png" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="create-tab-3">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                  <h3>Инструмент создания эскизов</h3>
+
+                  <p>Щелкните правой кнопкой мыши тему и выберите <a href="#create-tab-1">Создать эскиз</a>, появится новое окно.</p>
+                  <ул>
+                    <li>Скопируйте скриншот своей игры</li>
+                    <li>Вставьте снимок экрана в <a href="#create-tab-1">инструмент создания миниатюр</a></li>
+                    <li>Измените размер окна, чтобы увеличить или уменьшить его.</li>
+                    <li>Переместите прямоугольный разделитель так, чтобы он лучше закрывал HUD.</li>
+                    <li>Нажмите кнопку <a href="#create-tab-1">Обработать и сохранить</a>.</li>
+                  </ul>
+                  <p>Изображение будет называться <a href="#create-tab-1">PREVIEW.jpg</a>, <b>Нельзя изменить это имя</b>.</p>
+                  <p>Изображение будет сохранено в папке, где находится ваша тема.</p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="assets/img/thumbnail-maker.png" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="create-tab-4">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Экспорт темы</h3>
+
+                <p>Вы можете экспортировать любую выбранную тему либо для резервного копирования, либо для совместного использования с сообществом.</p>
+                <ул>
+                  <li>Выберите тему в списке.</li>
+                  <li>Нажмите кнопку <a href="#create-tab-1">Экспортировать тему</a></li>.
+                </ul>
+                <p>Вас спросят, где его сохранить, и вы получите ZIP-файл, содержащий вашу экспортированную тему.</p>
+                <p>Если вы хотите поделиться им, опубликуйте его на нашем <a href="https://discord.gg/ZaRt6bCXvj">сервере Discord</a> на канале #Sharing-Colors.</p>
+                <p>Вы можете загрузить ZIP-файл и полноразмерный снимок экрана с вашими цветами.</p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="assets/img/theme-sharing.png" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section><!-- End Creation Section -->
+
+    <!-- ======= Support Section ======= -->
+    <section id="support" class="testimonials section-bg">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+        <h2>Как получить</h2>
+        <p>Поддержка</p>
+      </div>
+
+      <div class="" data-aos="fade-up" data-aos-delay="100">
+        <p>EDHM имеет отличное и дружелюбное сообщество, которое вместе с нашими модераторами и администраторами
+          поможет вам решить любые проблемы, которые могут у вас возникнуть.</p>
+        <p>Приглашаем вас <a href="https://discord.gg/ZaRt6bCXvj" target="_blank">присоединиться к нашему Discord</a> и стать частью сообщества EDHM.</p>
+          <a href="https://discord.com/download" target="_blank"><img src="assets/img/Discord-Logo+Wordmark-Color.png"
+            alt="Get Discord" width="400"></a>
+      </div>
+
+    </div>
+  </section><!-- End Testimonials Section -->
+
+
+</main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Restaurantly</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
