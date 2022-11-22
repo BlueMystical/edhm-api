@@ -7,6 +7,8 @@ Autor:          Jhollman Chacon R. (**Blue Mystic**) 2022 (•̀ᴗ•́)و
 - Produccion:      https://edhm-ui.herokuapp.com/
 - Source Code:     https://github.com/BlueMystical/edhm-api
 
+- Static HTML from Github Pages:   https://bluemystical.github.io/edhm-api/
+
 Requeriments and Installation:
 -------------
 
