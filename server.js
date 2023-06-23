@@ -8,7 +8,7 @@ const port           = 3000;
     Autor:          Jhollman Chacon R. (Blue Mystic) 2022 (•̀ᴗ•́)و    
     
     Development:    http://localhost:3000/
-    Produccion:     https://edhm-ui.herokuapp.com/
+    Produccion:     https://careful-rose-singlet.cyclic.app/users/list/
     Source Code:    https://github.com/BlueMystical/edhm-api
 * ----------------------------------------------------------------- */
 // todo dentro de la carpeta 'public' se puede acceder estaticamente, en el navegador 'localhost:3000\favicon.ico'

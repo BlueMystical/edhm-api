@@ -1,6 +1,9 @@
 const fs = require('fs');
 const countriesData = './Data/countries.json';
 
+
+
+
 module.exports = function (app, db) {
 
   //Esta es la Conexion con la Base de Datos:
@@ -20,7 +23,7 @@ module.exports = function (app, db) {
 
   app.get('/', (req, res) => {
     try {
-      //Re-directs to the Chart page:
+      //Re-directs to the Index page:
       res.status(200).sendFile('index.html', { root: './public' });
     } catch (error) {
       _Response.success = false;
