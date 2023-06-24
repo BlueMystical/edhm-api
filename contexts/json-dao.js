@@ -151,14 +151,14 @@ exports.JSONDB_GetUsers = async function () {
 
 /** Agrega (o Actualiza) un Registro al Array de Usuarios.
  * @param  {} UserData  JSON con los datos del nuevo Usuario, si ya existe se sobre-escribe.  */
-exports.JSONDB_AddUser = async function (UserData) {
+exports.JSONDB_AddUser = function (UserData) {
     try {
         //Removes Non UTF-8 characters:
         UserData.CommanderName = cleanString(UserData.CommanderName).replace(/[!@#$^&%*()+=[\]/{}|:<>?,.\\-]/g, '');
 
         // create an item in collection with key "leo"
         let edhm_users = db.collection("edhm_users");
-        let leo = await edhm_users.set(UserData.CommanderName, UserData);
+        let leo = edhm_users.set(UserData.CommanderName, UserData);
         console.log(leo);
 
         _Response.success = true;
@@ -207,7 +207,7 @@ exports.JSONDB_FindUsers = function (Criteria) {
     console.log(item);
     _Response.result = item;
 
-    if (_Response.result && _Response.result.length > 0) {
+    if (_Response.result) {
         _Response.success = true;
         _Response.message = _Response.result.length + ' records.';
     } else {
