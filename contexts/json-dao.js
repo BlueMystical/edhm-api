@@ -145,10 +145,13 @@ exports.JSONDB_GetUsers = async function () {
     _Response.result = new Array();
 
     all_users.results.forEach(user => {
-        console.log(user.props);
-        let me = user.get();
-        console.log(me);
-        _Response.result.push(me);
+        //console.log(user.props);
+        let me = user.get().then(ret => {
+            console.log(ret);
+            _Response.result.push(ret);
+        });
+        //console.log(me);
+        
     });
 
      /* find orange animals:
