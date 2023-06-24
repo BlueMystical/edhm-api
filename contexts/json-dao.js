@@ -138,9 +138,9 @@ exports.JSONDB_GetUsers = async function () {
 //JSON.parse(my_file);
 
     let edhm_users = db.collection("edhm_users");
-    console.log(edhm_users);
+    console.log(edhm_users.get());
 
-    edhm_users.forEach(user => {
+    edhm_users.get().forEach(user => {
         _Response.result.push(user.props);
     });
 
