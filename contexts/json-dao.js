@@ -138,11 +138,11 @@ exports.JSONDB_GetUsers = async function () {
 //JSON.parse(my_file);
 
     let edhm_users = db.collection("edhm_users");
-    console.log(edhm_users.get());
+    console.log(edhm_users);
 
-    edhm_users.get().forEach(user => {
+ /*   edhm_users.get().forEach(user => {
         _Response.result.push(user.props);
-    });
+    });*/
 
     if (_Response.result && _Response.result.length > 0) {
         _Response.success = true;
