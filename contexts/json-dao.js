@@ -1,6 +1,10 @@
 const JsonDB = require('node-json-db').JsonDB;
 const Config = require('node-json-db/dist/lib/JsonDBConfig').Config;
 
+const CyclicDb = require("@cyclic.sh/dynamodb");
+const db = CyclicDb("careful-rose-singletCyclicDB");
+
+
 // Instancia del JSON que contiene nuestro datos:   saveOnPush=true, HumanReadable=false
 var jdb = new JsonDB(new Config('./Data/edhm_users.json', true, false, '/'));
 
@@ -128,8 +132,11 @@ var _Response = {
 };
 
 /** Obtiene la Lista Completa de Usuarios. */
-exports.JSONDB_GetUsers = function () {
+exports.JSONDB_GetUsers = async function () {
+    
     _Response.result = jdb.getData("/data");
+
+        //JSON.parse(my_file);
 
     if (_Response.result && _Response.result.length > 0) {
         _Response.success = true;
@@ -144,13 +151,22 @@ exports.JSONDB_GetUsers = function () {
 
 /** Agrega (o Actualiza) un Registro al Array de Usuarios.
  * @param  {} UserData  JSON con los datos del nuevo Usuario, si ya existe se sobre-escribe.  */
-exports.JSONDB_AddUser = function (UserData) {
+exports.JSONDB_AddUser = async function (UserData) {
     try {
         //Removes Non UTF-8 characters:
         UserData.CommanderName = cleanString(UserData.CommanderName).replace(/[!@#$^&%*()+=[\]/{}|:<>?,.\\-]/g, '');
 
+        // create an item in collection with key "leo"
+        let edhm_users = db.collection("edhm_users");
+        let leo = await edhm_users.set(UserData.CommanderName, UserData);
+        console.log(leo);
+
+        _Response.success = true;
+        _Response.result = true;
+        _Response.message = 'User data Added successfully (•̀ᴗ•́)و';
+
         //Obtiene el Indice del elemento buscado:
-        var foundIndex = jdb.getIndex("/data", UserData.CommanderName, "CommanderName");
+        /*var foundIndex = jdb.getIndex("/data", UserData.CommanderName, "CommanderName");
 
         //Verifies the pre-existance of the new record:
         if (foundIndex != null && typeof foundIndex != 'undefined' && foundIndex >= 0) {
@@ -166,7 +182,9 @@ exports.JSONDB_AddUser = function (UserData) {
             _Response.success = true;
             _Response.result = true;
             _Response.message = 'User data Added successfully (•̀ᴗ•́)و';
-        }
+        } */
+
+        
     } catch (error) {
         console.log(error);
         _Response.success = false;
@@ -179,10 +197,15 @@ exports.JSONDB_AddUser = function (UserData) {
 /** PERMITE BUSCAR USUARIOS USANDO CUALQUIER CRITERIO DISPONIBLE
  * @param  {} Criteria Nombres de los Campos y Condicion de busqueda, ejem: 'CommanderName=Blue', 'Date >= 2022-07-09'  */
 exports.JSONDB_FindUsers = function (Criteria) {
-    var AllRecords = jdb.getData("/data");
+    /*var AllRecords = jdb.getData("/data");
     if (AllRecords && AllRecords.length > 0) {
         _Response.result = MyArray.from(AllRecords).filterBy(Criteria);
-    }
+    }*/
+
+    let edhm_users = db.collection("edhm_users");
+    let item = edhm_users.get('Blue Mystical');
+    console.log(item);
+    _Response.result = item;
 
     if (_Response.result && _Response.result.length > 0) {
         _Response.success = true;
