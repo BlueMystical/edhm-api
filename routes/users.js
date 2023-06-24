@@ -39,7 +39,7 @@ module.exports = function (app, db) {
    // _Response = JsonDB.JSONDB_GetUsers();
    //  res.status(200).send(_Response);   //<- OK 
 
-      JsonDB.JsonDB.JSONDB_GetUsers().then(ret => {
+      JsonDB.JSONDB_GetUsers().then(ret => {
         //console.log(ret);
         res.status(200).send(ret);
       }).catch(err => {
@@ -105,7 +105,7 @@ module.exports = function (app, db) {
         //JsonDB.JSONDB_getUserData(req.query).then(ret => res.status(200).send(ret)).catch(err => console.log(err)); 
 
         JsonDB.JSONDB_getUserData(req.query).then(ret => {
-          console.log(ret);
+          //console.log(ret);
           res.status(200).send(ret);
         }).catch(err => {
           console.log(err)
