@@ -137,22 +137,12 @@ exports.JSONDB_GetUsers = async function () {
    // _Response.result = jdb.getData("/data");
 //JSON.parse(my_file);
 
-var params = {
-    FilterExpression: '',
-    TableName: 'edhm_users'
-  };
-  
-  db.query(params, function(err, data) {
-    if (err) {
-      console.log("Error", err);
-    } else {
-      //console.log("Success", data.Items);
-      data.Items.forEach(function(element, index, array) {
-        console.log(element);
-        _Response.result.push(element.props);
-      });
-    }
-  });
+    let edhm_users = db.collection("edhm_users");
+    console.log(edhm_users);
+
+    edhm_users.forEach(user => {
+        _Response.result.push(user.props);
+    });
 
     if (_Response.result && _Response.result.length > 0) {
         _Response.success = true;
