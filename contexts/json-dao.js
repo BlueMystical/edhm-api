@@ -138,11 +138,34 @@ exports.JSONDB_GetUsers = async function () {
 //JSON.parse(my_file);
 
     let edhm_users = db.collection("edhm_users");
-    console.log(edhm_users);
+    //console.log(edhm_users);
+    let all_users =  await edhm_users.list();
+    console.log(all_users);
 
- /*   edhm_users.get().forEach(user => {
+    all_users.get().forEach(user => {
         _Response.result.push(user.props);
-    });*/
+    });
+
+     /* find orange animals:
+        let orange_animals = await animals.index('color').find('orange');
+        console.log('orange_animals', orange_animals);
+
+        // get newest item in collection 
+        let new_animal = await animals.latest()
+
+         // list all animals - will auto-paginate, limit and next token can be provided
+        let all_animals =  await animals.list()
+        console.log('all_animals',all_animals)
+
+         // filter by object (does not support arrays yets)
+        // filter animals by color
+        let black_animals = await animals.filter({color:"black"})
+        console.log(black_animals)
+        
+        // filter animals by color
+        let orange_cats = await animals.filter({color:"orange", type:"cat"})
+        console.log(orange_cats)
+    */
 
     if (_Response.result && _Response.result.length > 0) {
         _Response.success = true;
