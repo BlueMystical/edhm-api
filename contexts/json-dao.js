@@ -218,6 +218,24 @@ exports.JSONDB_FindUsers = async function (Criteria) {
     }
     return _Response;
 };
+//exports.JSONDB_getUserData = async (Criteria) => {
+exports.JSONDB_getUserData = async function (Criteria) {
+    try {
+    	let edhm_users = db.collection("edhm_users");
+        let data = await edhm_users.get('Blue Mystical');
+        console.log(data);
+        _Response.result = data.props;
+
+        if (_Response.result) {
+            _Response.success = true;
+            _Response.message = 1 + ' records.';
+        }
+        
+    } catch (err) {
+       console.log(err)
+    }  
+    return _Response;  
+};
 
 /** Devuelve Estadisticas de Diferentes Campos. */
 exports.JSONDB_GetStatistics = function () {

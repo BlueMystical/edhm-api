@@ -64,13 +64,8 @@ module.exports = function (app, db) {
 
       if (req.body && Object.keys(req.body).length !== 0 && Object.getPrototypeOf(req.body) === Object.prototype) {
 
-        JsonDB.JSONDB_AddUser(req.body).then(res => {
-          console.log(res);
-          res.status(200).send(res);
-        }).catch(err => {
-            console.log(err)
-        });
-       // res.status(200).send(JsonDB.JSONDB_AddUser(req.body));   //<- OK 
+        
+        res.status(200).send(JsonDB.JSONDB_AddUser(req.body));   //<- OK 
 
       } else {
         _Response.result = { error: 400, message: "Expected parameters have not been passed." };
@@ -95,7 +90,17 @@ module.exports = function (app, db) {
 
       if (typeof req.query !== 'undefined' && Object.keys(req.query).length) {
 
-        res.status(200).send(JsonDB.JSONDB_FindUsers(req.query));   //<- OK 
+        //res.status(200).send(JsonDB.JSONDB_FindUsers(req.query));   //<- OK 
+
+        // getData is a promise
+        //JsonDB.JSONDB_getUserData(req.query).then(res => res.status(200).send(res)).catch(err => console.log(err)); 
+
+        JsonDB.JSONDB_getUserData(req.query).then(res => {
+          console.log(res);
+          res => res.status(200).send(res);
+        }).catch(err => {
+          console.log(err)
+        });
 
       } else {
         _Response.result = { error: 400, message: "Expected parameters have not been passed." };
