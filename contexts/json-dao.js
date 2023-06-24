@@ -135,12 +135,14 @@ var _Response = {
 exports.JSONDB_GetUsers = async function () {
     
    // _Response.result = jdb.getData("/data");
-//JSON.parse(my_file);
+    //JSON.parse(my_file);
 
     let edhm_users = db.collection("edhm_users");
     //console.log(edhm_users);
     let all_users =  await edhm_users.list();
     console.log(all_users);
+
+    _Response.result = new Array();
 
     all_users.results.forEach(user => {
         _Response.result.push(user.props);
