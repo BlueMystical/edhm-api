@@ -196,16 +196,17 @@ exports.JSONDB_AddUser = function (UserData) {
 
 /** PERMITE BUSCAR USUARIOS USANDO CUALQUIER CRITERIO DISPONIBLE
  * @param  {} Criteria Nombres de los Campos y Condicion de busqueda, ejem: 'CommanderName=Blue', 'Date >= 2022-07-09'  */
-exports.JSONDB_FindUsers = function (Criteria) {
+exports.JSONDB_FindUsers = async function (Criteria) {
     /*var AllRecords = jdb.getData("/data");
     if (AllRecords && AllRecords.length > 0) {
         _Response.result = MyArray.from(AllRecords).filterBy(Criteria);
     }*/
 
     let edhm_users = db.collection("edhm_users");
-    let item = edhm_users.get('Blue Mystical');
-    console.log(item);
-    _Response.result = item;
+    let item = await edhm_users.get('Blue Mystical');
+
+    //console.log(item);
+    _Response.result = item.props;
 
     if (_Response.result) {
         _Response.success = true;

@@ -64,7 +64,13 @@ module.exports = function (app, db) {
 
       if (req.body && Object.keys(req.body).length !== 0 && Object.getPrototypeOf(req.body) === Object.prototype) {
 
-        res.status(200).send(JsonDB.JSONDB_AddUser(req.body));   //<- OK 
+        JsonDB.JSONDB_AddUser(req.body).then(res => {
+          console.log(res);
+          res.status(200).send(res);
+        }).catch(err => {
+            console.log(err)
+        });
+       // res.status(200).send(JsonDB.JSONDB_AddUser(req.body));   //<- OK 
 
       } else {
         _Response.result = { error: 400, message: "Expected parameters have not been passed." };
