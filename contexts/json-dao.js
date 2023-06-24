@@ -218,7 +218,7 @@ exports.JSONDB_FindUsers = async function (Criteria) {
     }
     return _Response;
 };
-//exports.JSONDB_getUserData = async (Criteria) => {
+
 exports.JSONDB_getUserData = async function (Criteria) {
     try {
     	let edhm_users = db.collection("edhm_users");
@@ -230,7 +230,7 @@ exports.JSONDB_getUserData = async function (Criteria) {
             _Response.success = true;
             _Response.message = 1 + ' records.';
         }
-        
+
     } catch (err) {
        console.log(err)
     }  

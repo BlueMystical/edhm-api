@@ -93,11 +93,11 @@ module.exports = function (app, db) {
         //res.status(200).send(JsonDB.JSONDB_FindUsers(req.query));   //<- OK 
 
         // getData is a promise
-        //JsonDB.JSONDB_getUserData(req.query).then(res => res.status(200).send(res)).catch(err => console.log(err)); 
+        //JsonDB.JSONDB_getUserData(req.query).then(ret => res.status(200).send(ret)).catch(err => console.log(err)); 
 
-        JsonDB.JSONDB_getUserData(req.query).then(res => {
-          console.log(res);
-          res => res.status(200).send(res);
+        JsonDB.JSONDB_getUserData(req.query).then(ret => {
+          console.log(ret);
+          res.status(200).send(ret);
         }).catch(err => {
           console.log(err)
         });
