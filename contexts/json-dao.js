@@ -134,9 +134,25 @@ var _Response = {
 /** Obtiene la Lista Completa de Usuarios. */
 exports.JSONDB_GetUsers = async function () {
     
-    _Response.result = jdb.getData("/data");
+   // _Response.result = jdb.getData("/data");
+//JSON.parse(my_file);
 
-        //JSON.parse(my_file);
+var params = {
+    FilterExpression: '',
+    TableName: 'edhm_users'
+  };
+  
+  db.query(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+    } else {
+      //console.log("Success", data.Items);
+      data.Items.forEach(function(element, index, array) {
+        console.log(element);
+        _Response.result.push(element.props);
+      });
+    }
+  });
 
     if (_Response.result && _Response.result.length > 0) {
         _Response.success = true;
@@ -223,7 +239,7 @@ exports.JSONDB_getUserData = async function (Criteria) {
     try {
     	let edhm_users = db.collection("edhm_users");
         let data = await edhm_users.get('Blue Mystical');
-        console.log(data);
+        //console.log(data);
         _Response.result = data.props;
 
         if (_Response.result) {

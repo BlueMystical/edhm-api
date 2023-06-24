@@ -35,8 +35,17 @@ module.exports = function (app, db) {
 
   // Shows the Data of all Registered Users
   app.get('/users/list', (req, res) => {
-    _Response = JsonDB.JSONDB_GetUsers();
-    res.status(200).send(_Response);   //<- OK 
+
+   // _Response = JsonDB.JSONDB_GetUsers();
+   //  res.status(200).send(_Response);   //<- OK 
+
+      JsonDB.JsonDB.JSONDB_GetUsers().then(ret => {
+        //console.log(ret);
+        res.status(200).send(ret);
+      }).catch(err => {
+        console.log(err)
+      });
+
   });
 
   // Returns the whole JSON data file
