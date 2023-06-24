@@ -146,9 +146,9 @@ exports.JSONDB_GetUsers = async function () {
 
     all_users.results.forEach(user => {
         console.log(user.props);
-        let me = edhm_users.get(user.key);
+        let me = user.get();
         console.log(me);
-        _Response.result.push(me.props);
+        _Response.result.push(me);
     });
 
      /* find orange animals:
