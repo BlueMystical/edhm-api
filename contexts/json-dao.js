@@ -144,7 +144,7 @@ exports.JSONDB_GetUsers = async function () {
 
     _Response.result = new Array();
 
-    await all_users.results.forEach(async user => {
+    all_users.results.forEach(async user => {
         //console.log(all_users.get( user.key) );
         //_Response.result.push(user.props);
 
@@ -157,6 +157,8 @@ exports.JSONDB_GetUsers = async function () {
             _Response.result.push(ret.props);
         });*/
     });
+
+    console.log(_Response.result);
 
      /* find orange animals:
         let orange_animals = await animals.index('color').find('orange');
