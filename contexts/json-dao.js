@@ -140,16 +140,22 @@ exports.JSONDB_GetUsers = async function () {
     let edhm_users = db.collection("edhm_users");
     //console.log(edhm_users);
     let all_users =  await edhm_users.list();
-    console.log('all_users:',all_users);
+    console.log('all_users:', all_users);
 
     _Response.result = new Array();
 
-    all_users.results.forEach(user => {
-        console.log(user.props);
-        let me = user.get().then(ret => {
+    await all_users.results.forEach(async user => {
+        //console.log(all_users.get( user.key) );
+        //_Response.result.push(user.props);
+
+        var ret = await user.get();
+        console.log(ret);
+        _Response.result.push(ret.props);
+
+        /*let me = await user.get().then(ret => {
             console.log(ret);
             _Response.result.push(ret.props);
-        });
+        });*/
     });
 
      /* find orange animals:
