@@ -34,12 +34,12 @@ module.exports = function (app, db) {
   });
 
   // Shows the Data of all Registered Users
-  app.get('/users/list', (req, res) => {
+  app.get('/users/list', async (req, res) => {
 
    // _Response = JsonDB.JSONDB_GetUsers();
    //  res.status(200).send(_Response);   //<- OK 
 
-      JsonDB.JSONDB_GetUsers().then(ret => {
+     await JsonDB.JSONDB_GetUsers().then(ret => {
         //console.log(ret);
         res.status(200).send(ret);
       }).catch(err => {
