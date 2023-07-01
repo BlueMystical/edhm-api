@@ -137,75 +137,30 @@ exports.JSONDB_GetUsers = async function () {
    // _Response.result = jdb.getData("/data");
     //JSON.parse(my_file);
 
-    let edhm_users = db.collection("edhm_users");
+    //let edhm_users = db.collection("edhm_users");
     //console.log('line141:', edhm_users);
-    let all_users =  await edhm_users.list();
-    console.log('line143:', all_users);
+    let all_users =  await db.collection("edhm_users").list();
+    //console.log('line143:', all_users);
 
     _Response.result = new Array();
 
     for (const user of all_users.results) {
         var ret = await user.get();
-        console.log('line149:', ret);
+        //console.log('line149:', ret);
         _Response.result.push(ret.props);
     };
 
-    console.log('line153:', _Response.result);
+    //console.log('line153:', _Response.result);
 
-        if (_Response.result && _Response.result.length > 0) {
-            _Response.success = true;
-            _Response.message = _Response.result.length + ' records.';
-        } else {
-            _Response.success = false;
-            _Response.result = null;
-            _Response.message = 'No records found!';
-        }
-        return _Response;
-
-   // await all_users.results.forEach(async user => {
-        //console.log( user );
-        //_Response.result.push(user.props);
-/*
-        var ret = await user.get();
-        console.log('line152:', ret);
-        _Response.result.push(ret.props); */
-
-        //var ret = await edhm_users.item(user.key).get();
-        //console.log('line156:', ret);
-        
-        //_Response.result.push(user);
-
-     //   let me = await user.get().then(ret => {
-            //console.log('line161:', ret);
-     //       _Response.result.push(ret.props);
-     //   });
-    //});
-
-
-    
-
-     /* find orange animals:
-        let orange_animals = await animals.index('color').find('orange');
-        console.log('orange_animals', orange_animals);
-
-        // get newest item in collection 
-        let new_animal = await animals.latest()
-
-         // list all animals - will auto-paginate, limit and next token can be provided
-        let all_animals =  await animals.list()
-        console.log('all_animals',all_animals)
-
-         // filter by object (does not support arrays yets)
-        // filter animals by color
-        let black_animals = await animals.filter({color:"black"})
-        console.log(black_animals)
-        
-        // filter animals by color
-        let orange_cats = await animals.filter({color:"orange", type:"cat"})
-        console.log(orange_cats)
-    */
-
-    
+    if (_Response.result && _Response.result.length > 0) {
+        _Response.success = true;
+        _Response.message = _Response.result.length + ' records.';
+    } else {
+        _Response.success = false;
+        _Response.result = null;
+        _Response.message = 'No records found!';
+    }
+    return _Response;    
 };
 
 /** Agrega (o Actualiza) un Registro al Array de Usuarios.
