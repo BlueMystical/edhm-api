@@ -152,7 +152,7 @@ exports.JSONDB_GetUsers = async function () {
         //console.log(ret);
         //_Response.result.push(ret.props);
 
-        var ret = await edhm_users.item(user.key);
+        var ret = await edhm_users.item(user.key).get();
         console.log(ret);
         _Response.result.push(ret.props);
         //_Response.result.push(user);
