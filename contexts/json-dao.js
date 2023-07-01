@@ -140,7 +140,7 @@ exports.JSONDB_GetUsers = async function () {
     let edhm_users = db.collection("edhm_users");
     //console.log(edhm_users);
     let all_users =  await edhm_users.list();
-    console.log('all_users:', all_users);
+    console.log('line143:', all_users);
 
     _Response.result = new Array();
 
@@ -153,10 +153,12 @@ exports.JSONDB_GetUsers = async function () {
         //_Response.result.push(ret.props);
 
         var ret = await edhm_users.item(user.key).get();
-        console.log(ret);
-        _Response.result.push(ret);
+        console.log('line156:', ret);
+        let me = await user.get();
+        console.log('line158:', me);
+        //_Response.result.push(ret);
         
-        //_Response.result.push(user);
+        _Response.result.push(user);
 
         /*let me = await user.get().then(ret => {
             console.log(ret);
