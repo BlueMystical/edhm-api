@@ -144,8 +144,8 @@ exports.JSONDB_GetUsers = async function () {
 
     _Response.result = new Array();
 
-    for (const file of files) {
-        var ret = await edhm_users.item(user.key).get();
+    for (const user of all_users) {
+        var ret = await user.get();
         console.log('line149:', ret);
         _Response.result.push(ret.props);
     };
