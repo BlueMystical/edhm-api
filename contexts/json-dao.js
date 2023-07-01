@@ -138,13 +138,13 @@ exports.JSONDB_GetUsers = async function () {
     //JSON.parse(my_file);
 
     let edhm_users = db.collection("edhm_users");
-    //console.log(edhm_users);
-    let all_users =  await edhm_users.list();
-    console.log('line143:', all_users);
+    console.log('line141:', edhm_users);
+    //let all_users =  await edhm_users.list();
+    //console.log('line143:', all_users);
 
     _Response.result = new Array();
 
-    for (const user of all_users) {
+    for (const user of edhm_users.results) {
         var ret = await user.get();
         console.log('line149:', ret);
         _Response.result.push(ret.props);
