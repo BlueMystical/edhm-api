@@ -138,20 +138,17 @@ exports.JSONDB_GetUsers = async function () {
     //JSON.parse(my_file);
 
     //let edhm_users = db.collection("edhm_users");
-    //console.log('line141:', edhm_users);
     let all_users =  await db.collection("edhm_users").list();
-    //console.log('line143:', all_users);
+    if (all_users && all_users.results.length > 0) {
+        _Response.result = new Array();
 
-    _Response.result = new Array();
-
-    for (const user of all_users.results) {
-        var ret = await user.get();
-        //console.log('line149:', ret);
-        _Response.result.push(ret.props);
-    };
-
-    //console.log('line153:', _Response.result);
-
+        for (const user of all_users.results) {
+            var ret = await user.get();
+            //console.log('line147:', ret);
+            _Response.result.push(ret.props);
+        };
+    }
+    
     if (_Response.result && _Response.result.length > 0) {
         _Response.success = true;
         _Response.message = _Response.result.length + ' records.';
