@@ -145,16 +145,17 @@ exports.JSONDB_GetUsers = async function () {
     _Response.result = new Array();
 
     await all_users.results.forEach(async user => {
-        console.log( user );
+        //console.log( user );
         //_Response.result.push(user.props);
 
         //var ret = await user.get();
         //console.log(ret);
         //_Response.result.push(ret.props);
 
-        //var ret = await all_users.results.item(user.key);
-        //console.log(ret);
-        _Response.result.push(user);
+        var ret = await edhm_users.item(user.key);
+        console.log(ret);
+        _Response.result.push(ret);
+        //_Response.result.push(user);
 
         /*let me = await user.get().then(ret => {
             console.log(ret);
