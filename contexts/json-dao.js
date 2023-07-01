@@ -152,7 +152,7 @@ exports.JSONDB_GetUsers = async function () {
         //console.log(ret);
         //_Response.result.push(ret.props);
 
-        var ret = await all_users.item(user.key);
+        var ret = await all_users.results.item(user.key);
         console.log(ret);
         _Response.result.push(ret.props);
 
