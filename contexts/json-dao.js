@@ -144,7 +144,25 @@ exports.JSONDB_GetUsers = async function () {
 
     _Response.result = new Array();
 
-    await all_users.results.forEach(async user => {
+    for (const file of files) {
+        var ret = await edhm_users.item(user.key).get();
+        console.log('line149:', ret);
+        _Response.result.push(ret.props);
+    };
+
+    console.log('line153:', _Response.result);
+
+        if (_Response.result && _Response.result.length > 0) {
+            _Response.success = true;
+            _Response.message = _Response.result.length + ' records.';
+        } else {
+            _Response.success = false;
+            _Response.result = null;
+            _Response.message = 'No records found!';
+        }
+        return _Response;
+
+   // await all_users.results.forEach(async user => {
         //console.log( user );
         //_Response.result.push(user.props);
 /*
@@ -157,23 +175,12 @@ exports.JSONDB_GetUsers = async function () {
         
         //_Response.result.push(user);
 
-        let me = await user.get().then(ret => {
+     //   let me = await user.get().then(ret => {
             //console.log('line161:', ret);
-            _Response.result.push(ret.props);
-        });
-    }).then(resp => {
-        console.log('line165:', _Response.result);
-        
-        if (_Response.result && _Response.result.length > 0) {
-            _Response.success = true;
-            _Response.message = _Response.result.length + ' records.';
-        } else {
-            _Response.success = false;
-            _Response.result = null;
-            _Response.message = 'No records found!';
-        }
-        return _Response;
-    });
+     //       _Response.result.push(ret.props);
+     //   });
+    //});
+
 
     
 
