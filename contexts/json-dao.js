@@ -158,12 +158,24 @@ exports.JSONDB_GetUsers = async function () {
         //_Response.result.push(user);
 
         let me = await user.get().then(ret => {
-            console.log('line161:', ret);
+            //console.log('line161:', ret);
             _Response.result.push(ret.props);
         });
+    }).then(resp => {
+        console.log('line165:', _Response.result);
+        
+        if (_Response.result && _Response.result.length > 0) {
+            _Response.success = true;
+            _Response.message = _Response.result.length + ' records.';
+        } else {
+            _Response.success = false;
+            _Response.result = null;
+            _Response.message = 'No records found!';
+        }
+        return _Response;
     });
 
-    console.log(_Response.result);
+    
 
      /* find orange animals:
         let orange_animals = await animals.index('color').find('orange');
@@ -186,15 +198,7 @@ exports.JSONDB_GetUsers = async function () {
         console.log(orange_cats)
     */
 
-    if (_Response.result && _Response.result.length > 0) {
-        _Response.success = true;
-        _Response.message = _Response.result.length + ' records.';
-    } else {
-        _Response.success = false;
-        _Response.result = null;
-        _Response.message = 'No records found!';
-    }
-    return _Response;
+    
 };
 
 /** Agrega (o Actualiza) un Registro al Array de Usuarios.
