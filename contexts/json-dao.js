@@ -260,32 +260,32 @@ exports.JSONDB_GetStatistics = async function () {
 
     //var existingRecords = jdb.getData("/data"); //<- Obtiene los Registros Actuales
     let existingRecords = await db.collection("edhm_users").list();
+    console.log("Line_263:", existingRecords.length);
 
-    if (typeof existingRecords !== 'undefined' && existingRecords.length > 0) {
-        console.log("Line_265:", existingRecords.length);
+    if (existingRecords && existingRecords.results.length > 0) {
+        console.log("Line_265:", existingRecords);
 
         for (const user of existingRecords.results) {
             var userinfo = await user.get();
+            console.log("Line_270:", userinfo);
 
             //Si ya existe, le sumamos 1; Si no existe, lo agregamos
             //1. Countries:
-            var Found = result.Countries.find(element => element.Value === userinfo.Country);
+            var Found = result.Countries.find(element => element.Value === userinfo.props.Country);
             if (Found && typeof Found != 'undefined') { if (Found.Value != '') { Found.Count++; } }
-            else { if (userinfo.Country != '') { result.Countries.push({ Value: userinfo.Country, Count: 1 }); } }
+            else { if (userinfo.props.Country != '') { result.Countries.push({ Value: userinfo.props.Country, Count: 1 }); } }
 
             //2. Languages:
-            Found = result.Languages.find(element => element.Value === userinfo.Language);
-            if (Found != null && typeof Found != 'undefined') { Found.Count++; } else { result.Languages.push({ Value: userinfo.Language, Count: 1 }); }
+            Found = result.Languages.find(element => element.Value === userinfo.props.Language);
+            if (Found != null && typeof Found != 'undefined') { Found.Count++; } else { result.Languages.push({ Value: userinfo.props.Language, Count: 1 }); }
 
             //3. Odyssey:
-            if (userinfo.Odyssey === 'true') result.Odyssey[0].Count++;
-            if (userinfo.Odyssey === 'false') result.Odyssey[1].Count++;
+            if (userinfo.props.Odyssey === 'true') result.Odyssey[0].Count++;
+            if (userinfo.props.Odyssey === 'false') result.Odyssey[1].Count++;
 
             //4. GameMode:
-            Found = result.GameMode.find(element => element.Value === userinfo.GameMode);
-            if (Found != null && typeof Found != 'undefined') { Found.Count++; } else { result.GameMode.push({ Value: userinfo.GameMode, Count: 1 }); }
-
-            //_Response.result.push(ret.props);
+            Found = result.GameMode.find(element => element.Value === userinfo.props.GameMode);
+            if (Found != null && typeof Found != 'undefined') { Found.Count++; } else { result.GameMode.push({ Value: userinfo.props.GameMode, Count: 1 }); }
         };
 
         result.UserCount = existingRecords.length;
