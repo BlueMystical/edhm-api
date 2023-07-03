@@ -170,7 +170,7 @@ exports.JSONDB_AddUser = function (UserData) {
         // create an item in collection with key "leo"
         let edhm_users = db.collection("edhm_users");
         let leo = edhm_users.set(UserData.CommanderName, UserData);
-        console.log(leo);
+        //console.log(leo);
 
         _Response.success = true;
         _Response.result = true;
@@ -249,7 +249,7 @@ exports.JSONDB_getUserData = async function (Criteria) {
 };
 
 /** Devuelve Estadisticas de Diferentes Campos. */
-exports.JSONDB_GetStatistics = function () {
+exports.JSONDB_GetStatistics = async function () {
     var result = {
         Countries: [],
         Languages: [],
@@ -258,12 +258,15 @@ exports.JSONDB_GetStatistics = function () {
         UserCount: 0
     }
 
-    var existingRecords = jdb.getData("/data"); //<- Obtiene los Registros Actuales
+    //var existingRecords = jdb.getData("/data"); //<- Obtiene los Registros Actuales
+    let existingRecords = await db.collection("edhm_users").list();
 
     if (typeof existingRecords !== 'undefined' && existingRecords.length > 0) {
-        console.log(existingRecords.length);
+        console.log("Line_265:", existingRecords.length);
 
-        existingRecords.forEach(userinfo => {
+        for (const user of existingRecords.results) {
+            var userinfo = await user.get();
+
             //Si ya existe, le sumamos 1; Si no existe, lo agregamos
             //1. Countries:
             var Found = result.Countries.find(element => element.Value === userinfo.Country);
@@ -282,7 +285,9 @@ exports.JSONDB_GetStatistics = function () {
             Found = result.GameMode.find(element => element.Value === userinfo.GameMode);
             if (Found != null && typeof Found != 'undefined') { Found.Count++; } else { result.GameMode.push({ Value: userinfo.GameMode, Count: 1 }); }
 
-        });
+            //_Response.result.push(ret.props);
+        };
+
         result.UserCount = existingRecords.length;
         result.Countries.sort((a, b) => (a.Value > b.Value) ? 1 : ((b.Value > a.Value) ? -1 : 0));
         result.Languages.sort((a, b) => (a.Value > b.Value) ? 1 : ((b.Value > a.Value) ? -1 : 0));

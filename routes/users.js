@@ -129,7 +129,9 @@ module.exports = function (app, db) {
   app.get('/users/get-statistics', (req, res) => {
     try {
 
-      res.status(200).send(JsonDB.JSONDB_GetStatistics());   //<- OK 
+      //res.status(200).send(JsonDB.JSONDB_GetStatistics());   //<- OK 
+
+      JsonDB.JSONDB_GetStatistics().then(ret => res.status(200).send(ret)).catch(err => console.log(err)); 
   
     } catch (error) {
       _Response.success = false;
