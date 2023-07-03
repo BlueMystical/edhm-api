@@ -213,16 +213,20 @@ exports.JSONDB_FindUsers = async function (Criteria) {
         _Response.result = MyArray.from(AllRecords).filterBy(Criteria);
     }*/
 
-    var AllRecords = await JSONDB_GetUsers();
-    if (AllRecords && AllRecords.result.length > 0) {
-        _Response.result = MyArray.from(AllRecords.result).filterBy(Criteria);
+    var AllRecords = new Array();
+    let all_users =  await db.collection("edhm_users").list();
+    if (all_users && all_users.results.length > 0) {
+        for (const user of all_users.results) {
+            var ret = await user.get();
+            AllRecords.push(ret.props);
+        };
+    }
+    if (AllRecords && AllRecords.length > 0) {
+        _Response.result = MyArray.from(AllRecords).filterBy(Criteria);
     }
 
     //let edhm_users = db.collection("edhm_users");
     //let item = await edhm_users.get('Blue Mystical');
-
-    //console.log(item);
-    //_Response.result = item.props;
 
     if (_Response.result) {
         _Response.success = true;

@@ -56,20 +56,16 @@ module.exports = function (app, db) {
       res.setHeader('Content-disposition', 'attachment; filename=myData.json');
       res.setHeader('Content-type', 'application/json');
 
-      await JsonDB.JSONDB_GetUsers().then(ret => {
-        //console.log(ret);        
+      await JsonDB.JSONDB_GetUsers().then(ret => {       
         if (ret.result && ret.result.length > 0) {
           res.json(ret.result);
-          /*res.write(JSON.stringify(ret.result), function (err) {
-            res.end();
-          });*/
         }
         res.status(200).send(ret);
       }).catch(err => {
         console.log(err)
       });
 
-      res.download('./Data/edhm_users.json', 'myData.json');
+      //res.download('./Data/edhm_users.json', 'myData.json');
 
     } catch (error) {
       console.log(error);
@@ -104,7 +100,7 @@ module.exports = function (app, db) {
 
   /* PERMITE BUSCAR USUARIOS USANDO CUALQUIER CRITERIO DISPONIBLE
  * Los Criterios son los Nombres de los Campos devueltos  */
-  app.get('/users/find', (req, res) => {
+  app.get('/users/find', async (req, res) => {
     try {
       //console.log(req.query);  //<- Parametros pasados x el Query
       //No es un array sino un Objeto con tantos Campos como Parametros se pasan
@@ -114,7 +110,7 @@ module.exports = function (app, db) {
         //res.status(200).send(JsonDB.JSONDB_FindUsers(req.query));   //<- OK 
 
         // getData is a promise
-        JsonDB.JSONDB_FindUsers(req.query).then(ret => res.status(200).send(ret)).catch(err => console.log(err)); 
+        await JsonDB.JSONDB_FindUsers(req.query).then(ret => res.status(200).send(ret)).catch(err => console.log(err)); 
 
       } else {
         _Response.result = { error: 400, message: "Expected parameters have not been passed." };
