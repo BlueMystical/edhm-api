@@ -260,14 +260,14 @@ exports.JSONDB_GetStatistics = async function () {
 
     //var existingRecords = jdb.getData("/data"); //<- Obtiene los Registros Actuales
     let existingRecords = await db.collection("edhm_users").list();
-    console.log("Line_263:", existingRecords.length);
+    //console.log("Line_263:", existingRecords.length);
 
     if (existingRecords && existingRecords.results.length > 0) {
-        console.log("Line_265:", existingRecords);
+        //console.log("Line_265:", existingRecords);
 
         for (const user of existingRecords.results) {
             var userinfo = await user.get();
-            console.log("Line_270:", userinfo);
+            //console.log("Line_270:", userinfo);
 
             //Si ya existe, le sumamos 1; Si no existe, lo agregamos
             //1. Countries:
@@ -286,9 +286,10 @@ exports.JSONDB_GetStatistics = async function () {
             //4. GameMode:
             Found = result.GameMode.find(element => element.Value === userinfo.props.GameMode);
             if (Found != null && typeof Found != 'undefined') { Found.Count++; } else { result.GameMode.push({ Value: userinfo.props.GameMode, Count: 1 }); }
-        };
 
-        result.UserCount = existingRecords.length;
+            result.UserCount++;
+        };
+        
         result.Countries.sort((a, b) => (a.Value > b.Value) ? 1 : ((b.Value > a.Value) ? -1 : 0));
         result.Languages.sort((a, b) => (a.Value > b.Value) ? 1 : ((b.Value > a.Value) ? -1 : 0));
     }
@@ -297,7 +298,7 @@ exports.JSONDB_GetStatistics = async function () {
 
     if (_Response.result) {
         _Response.success = true;
-        _Response.message = jdb.count("/data") + ' records.';
+        _Response.message = result.UserCount + ' records.';
     } else {
         _Response.success = false;
         _Response.result = null;
