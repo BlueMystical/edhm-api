@@ -49,12 +49,25 @@ module.exports = function (app, db) {
   });
 
   // Returns the whole JSON data file
-  app.get('/users/file', (req, res) => {
+  app.get('/users/file', async (req, res) => {
     try {
 
       //Returns the Whole file for Download:
       res.setHeader('Content-disposition', 'attachment; filename=myData.json');
       res.setHeader('Content-type', 'application/json');
+
+      await JsonDB.JSONDB_GetUsers().then(ret => {
+        //console.log(ret);        
+        if (ret.result && ret.result.length > 0) {
+          res.json(ret.result);
+          /*res.write(JSON.stringify(ret.result), function (err) {
+            res.end();
+          });*/
+        }
+        res.status(200).send(ret);
+      }).catch(err => {
+        console.log(err)
+      });
 
       res.download('./Data/edhm_users.json', 'myData.json');
 
@@ -72,7 +85,6 @@ module.exports = function (app, db) {
       //console.log(req.body);
 
       if (req.body && Object.keys(req.body).length !== 0 && Object.getPrototypeOf(req.body) === Object.prototype) {
-
         
         res.status(200).send(JsonDB.JSONDB_AddUser(req.body));   //<- OK 
 
@@ -102,14 +114,7 @@ module.exports = function (app, db) {
         //res.status(200).send(JsonDB.JSONDB_FindUsers(req.query));   //<- OK 
 
         // getData is a promise
-        //JsonDB.JSONDB_getUserData(req.query).then(ret => res.status(200).send(ret)).catch(err => console.log(err)); 
-
-        JsonDB.JSONDB_getUserData(req.query).then(ret => {
-          //console.log(ret);
-          res.status(200).send(ret);
-        }).catch(err => {
-          console.log(err)
-        });
+        JsonDB.JSONDB_FindUsers(req.query).then(ret => res.status(200).send(ret)).catch(err => console.log(err)); 
 
       } else {
         _Response.result = { error: 400, message: "Expected parameters have not been passed." };
