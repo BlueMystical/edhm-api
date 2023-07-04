@@ -64,9 +64,7 @@ module.exports = function (app, db) {
       }).catch(err => {
         console.log(err)
       });
-
-      //res.download('./Data/edhm_users.json', 'myData.json');
-
+      
     } catch (error) {
       console.log(error);
       _Response.message = error.message;

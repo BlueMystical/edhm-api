@@ -299,7 +299,7 @@ exports.JSONDB_GetStatistics = async function () {
             result.UserCount++;
         };
         
-        result.Countries.sort((a, b) => (a.Value > b.Value) ? 1 : ((b.Value > a.Value) ? -1 : 0));
+        result.Countries.sort((a, b) => (a.Count > b.Count) ? 1 : ((b.Count > a.Count) ? -1 : 0));
         result.Languages.sort((a, b) => (a.Value > b.Value) ? 1 : ((b.Value > a.Value) ? -1 : 0));
     }
 
